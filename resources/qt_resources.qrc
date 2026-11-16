@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/banshou">
+    <file alias="target.png">target.png</file>
+  </qresource>
+</RCC>

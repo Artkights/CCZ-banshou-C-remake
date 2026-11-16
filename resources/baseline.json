@@ -1,0 +1,2047 @@
+{
+  "schema": 2,
+  "sources": {
+    "build_release.py": "17fcf4632b474adf4ed678a180e3df6a4f3459964655ce0428ce3822b818838c",
+    "capability_evidence.py": "a275268718e43862215e5901dec62fe5586dcbddd7a898a29d926135ad8969e8",
+    "compatibility.py": "ebc25a8b5dafafe93baf0d3a4bcebb911761d385a48457762b1d740953e7c880",
+    "engine_layout.py": "012eaeeb0c3da696dced19033b90902f5c6e07c2a240b04638bf4c40acf66823",
+    "engine_profile.py": "3498780775fa0f5ed63be3dbca3bc07503d56d9cac74fdfe4d257b2c108a9bf2",
+    "evidence_collector.py": "a80d1dd125eefdb9414c10847f326ac4938e47d79d3897bb2d59f668f7d932b1",
+    "hook.py": "a53da7caafbcae82568f93f22c11601ab538916ef59b14d901c5ae18a0d9cf10",
+    "main.py": "ab3a91c65c2e18a27e6ca057e4aa3b7280eb9d94b77c4d26b8ecb6c700c772f4",
+    "mywindow.py": "7db07bb86e9a631aa90f0081d074a0875b5f179d6fa645587248be3c58b6faba",
+    "process_memory.py": "92f39480e07948ee7bc703963ad32c2feb41953765fb2c70fdbdc227ee2a15a5",
+    "runtime_catalog.py": "9e4e8278199e96b693b9bc1752ae7aaedfd9634c27529799d5d0fba0c67a0c2d",
+    "runtime_regions.py": "42e0e5a4fda60a5ddd72db5071094a507a3ec65c2e05b0ceba3ed363a993f019",
+    "semantic_resolver.py": "2912610bfed01e0f2c6dd4335d03cbec6b75302d8fe9a6d9209b4a8032ca5234",
+    "variable_storage.py": "9620a2b20dc11f4935ac87689aee3f9159674ba4ce6207d1a33fcdb77e8ba218",
+    "verify_release.py": "5d2a9641c4ae9ea5f94170dcdd039edd63fa724c46b33ab927486e75a31ac9d1",
+    "tests/__init__.py": "16af744e6d764d55a2f6fe0f1082ac67d37ea43604d3333a1281d1f105f22838",
+    "tests/fixture_support.py": "5c73615039b0e155adff01a2f92194eb7f6f8202062d99939fa4087784337c77",
+    "tests/patch_lifecycle_soak.py": "8e331545c02556e8b5b8d69ea68f4087979c251973e5063abfefbb14afb355ce",
+    "tests/test_battle_tick_transactions.py": "0add6d3515bf7995d838c533511ff2314b97592c5fbe72f1bf128772afe4b560",
+    "tests/test_boolean_profile.py": "4d66bfe0ce03d571701bce2d305c09f0d7a70c2721059e1dd55f258c5d8a8e88",
+    "tests/test_boolean_ui.py": "1819b0a956938f833811d4c6d269b1c749f16c6fb7504358e7eb7a982e98c833",
+    "tests/test_build_release.py": "b8f1b14bb35c0d6ba53691b114a9a7b8c8d2c502477ea6eb094bdb8a389ae258",
+    "tests/test_capability_evidence.py": "539af09ae1e5d123a00f87d6e20326a9f84a1412f19e161c0fe052c0c1946086",
+    "tests/test_compatibility.py": "bcf25e094d3981bdd6d3b0e6dd006fbad7b658d0e8c38b854f9e41b9357bb57f",
+    "tests/test_engine_layout.py": "0c42bf590d454210d0e36f884ca8d19920e8b1c7a477d28c4aeb71ae96bf9e96",
+    "tests/test_engine_profile.py": "3f3569972387f04d871d9e0184539d0b1cbf9c7cfb004ff19eaa10ae660db3c2",
+    "tests/test_evidence_collector.py": "a454e1a4b057f224cb42516470bd0d6f48e62785995b3341ae4799732bd7d78b",
+    "tests/test_item_layout.py": "1fe02ed62a01d450172b7bd90d21bf444ba5c1d6067c254df349efc33fb14b56",
+    "tests/test_legacy_runtime_profiles.py": "eed4ee569f1b5b44563df437d53a7335474bdb6617041ec3f9d590a71cf0d95f",
+    "tests/test_legacy_split_consumables.py": "2e0436074c5760e8054cd290376f6c570aff312922ea69d5531fef2f848cddf8",
+    "tests/test_legacy_ui_compat.py": "a777fd14122b7990a5310a680334c8310171543f93325470371a38ecc553f1af",
+    "tests/test_main_cli.py": "182ebaeac2403ff038c5e32556481a4f5bcf9ef7a36897cd48b6bca8029e1b2f",
+    "tests/test_patch_lifecycle_ui.py": "ef28533514cd915bd4813a1aabc6f5b85fd8d13def76a4a9eb43fc6cfab675b6",
+    "tests/test_patch_runtime_memory.py": "e0bc74a4b8078da99e6ba3ef4111c2a5d99b1c36cf2117cbe92bc78d822b2d70",
+    "tests/test_process_memory.py": "33aa7406ea4ff60d8a2ea66bb82be5e8997761d7bec8d2f6ebcf562a8b4770b4",
+    "tests/test_runtime_catalog.py": "3b6be600b297f28b2b8efc193ac077f3684c9320b758fe50f2427d46226a775b",
+    "tests/test_runtime_regions.py": "8b7607425e3dc3fa46fdc1888da199759cde3a738bbe44d1f6109ed85022f26f",
+    "tests/test_semantic_resolver.py": "80db43785b93cb8c03681a4db6e950ae72f95af0734f96d2e89c5e82bb454512",
+    "tests/test_single_exe_profile.py": "99aad187fe4d6cebf055f9c0f681b4724c4d3a214be56417481d41e1fbbbca90",
+    "tests/test_single_exe_ui.py": "87b84bb1f1c4aff89c446429c2952b0f82c52ad417838f0d0746144da8f42650",
+    "tests/test_startup_smoke.py": "a26f02738a887de2daf40581ac5131212303cb8edc6884a7baf73716f12444d7",
+    "tests/test_ui.py": "42a2bdb5931211f177f009568078454de3d0e041d992f9b35ed0d727a2f12332",
+    "tests/test_variable_storage.py": "2730729c1c2517e034be366bc7589531f4c47b45158e16cfdde15fae373ad93f",
+    "tests/test_verify_release.py": "3a7a49606451edb3f6b55f5ce45d623a272e6ab6efb1dcb4c4e049ea978ea619",
+    "tests/test_windows_api_compatibility.py": "da05cce8c20a0e1ed7ea2a23d7827309737d543446b75a07214495322d50883b"
+  },
+  "tests": [
+    {
+      "source": "test_battle_tick_transactions.py",
+      "name": "test_rectangle_kill_rejects_invalid_bounds_without_writes_or_slot_exception",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_battle_tick_transactions.py",
+      "name": "test_rectangle_kill_only_changes_nonempty_enemy_hp_and_rolls_back_every_target",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_battle_tick_transactions.py",
+      "name": "test_managed_control_preserves_unknown_bytes_and_rolls_back_rows_and_checkbox",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_battle_tick_transactions.py",
+      "name": "test_lock_tick_rejects_concurrency_retries_fresh_and_never_splits_hp_mp",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_domain_byte_counts_are_derived_without_changing_legacy_arrays",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_legacy_native_dword_capacity_is_proven_by_serializer",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_legacy_64_and_65_share_the_proven_dword_contract",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_direct_compat_cannot_write_a_66_bool_without_explicit_format_proof",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_native_getter_setter_and_script_object_are_the_evidence",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_broken_native_semantics_and_call_graph_fail_closed",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_duplicate_reader_is_ambiguous",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_runtime_relocation_normalizes_absolute_operands",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_runtime_changed_native_evidence_revokes_direct_compat_writes",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_read_only_session_keeps_bool_readable_and_disables_writes",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_profile.py",
+      "name": "test_6_6_variants_use_the_native_format_and_conservative_domain",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_bit_addresses_masks_and_editable_domain_edges",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_bit_display_explains_shared_byte_within_existing_width",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_rebased_process_displays_actual_address_and_saves_reference_snapshot",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_reserved_bits_are_read_only_and_save_rejects_programmatic_edits",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_page_crossing_user_boundary_keeps_reserved_values_read_only",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_non_aligned_browse_tail_stops_before_actor_table",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_out_of_range_jump_clears_rows_and_old_snapshots",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_forged_old_rows_cannot_modify_actor_dwords_even_in_direct_mode",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_unknown_native_format_cannot_be_saved_through_compatibility",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_old_unbounded_profile_does_not_expose_actor_rows",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_input_tokens_preserve_other_bits_and_neighboring_byte",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_single_row_save_keeps_other_unsaved_page_edits",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_page_save_merges_same_byte_and_cross_byte_edits",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_full_export_import_round_trip_uses_temp_archive",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_archive_count_or_crc_mismatch_rejects_without_touching_actor_data",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_boolean_save_rejects_expired_session_or_changed_layout",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_boolean_context_actions_are_reachable_from_table_and_save_button",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_game_changes_to_same_byte_are_rejected_without_overwriting_neighbor",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_boolean_ui.py",
+      "name": "test_legacy_non_bitmap_boolean_keeps_plain_address",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_build_release.py",
+      "name": "test_wheel_hash_tamper_rejected_before_manifest",
+      "nativeStatus": "not-applicable:python-build-script"
+    },
+    {
+      "source": "test_build_release.py",
+      "name": "test_lock_rejects_missing_hash_and_duplicate_pin",
+      "nativeStatus": "not-applicable:python-build-script"
+    },
+    {
+      "source": "test_build_release.py",
+      "name": "test_native_static_windows8_import_rejected_with_evidence",
+      "nativeStatus": "not-applicable:python-build-script"
+    },
+    {
+      "source": "test_build_release.py",
+      "name": "test_delay_import_is_recorded_separately_without_static_failure",
+      "nativeStatus": "not-applicable:python-build-script"
+    },
+    {
+      "source": "test_build_release.py",
+      "name": "test_real_bundle_archive_missing_qwindows_is_rejected",
+      "nativeStatus": "not-applicable:python-build-script"
+    },
+    {
+      "source": "test_build_release.py",
+      "name": "test_release_version_gate_requires_exact_x86_cpython_3810",
+      "nativeStatus": "not-applicable:python-build-script"
+    },
+    {
+      "source": "test_build_release.py",
+      "name": "test_system_matrix_never_invents_completed_platform_tests",
+      "nativeStatus": "not-applicable:python-build-script"
+    },
+    {
+      "source": "test_capability_evidence.py",
+      "name": "test_available_is_only_true_for_enabled_state",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_capability_evidence.py",
+      "name": "test_state_machine_rejects_skipped_or_reverse_transition",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_capability_evidence.py",
+      "name": "test_bundle_digest_rejects_tampering",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_capability_evidence.py",
+      "name": "test_verified_recipe_requires_both_baselines_and_same_recipe",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_capability_evidence.py",
+      "name": "test_manifest_rejects_changed_evidence_file",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_capability_evidence.py",
+      "name": "test_profile_promotes_only_after_two_matching_runtime_bundles",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_migration_is_one_time_and_does_not_overwrite_user_file",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_candidates_keep_legacy_location_after_migration",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_win7_without_sp1_is_warning_only",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_pre_win7_is_rejected",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_public_report_aliases_preserve_structured_result",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_non_windows_probe_is_nonfatal_for_offline_tests",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_duplicate_data_candidates_are_removed_case_insensitively",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_64_bit_interpreter_is_reported_for_x86_game_users",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_python_newer_than_38_is_warning_on_win7",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_user_data_uses_local_profile_before_roaming_profile",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_user_data_can_fallback_to_roaming_profile",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_user_data_without_profile_variables_uses_user_home",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_user_data_with_unknown_home_uses_temporary_user_directory",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_frozen_win7_rtm_is_rejected_in_strict_mode",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_frozen_release_rejects_64_bit_interpreter",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_frozen_release_rejects_python_other_than_3810",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_dependency_import_failure_is_in_structured_report",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_write_report_replaces_previous_json_and_preserves_unicode",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_migration_copy_failure_removes_partial_destination_and_keeps_source",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_migration_unwritable_destination_is_nonfatal",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_qt_plugin_environment_preserves_chinese_package_path",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_compatibility.py",
+      "name": "test_qt_plugin_environment_keeps_existing_setting_if_package_is_missing",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_layout.py",
+      "name": "test_access_levels_do_not_mix_read_and_write",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_engine_layout.py",
+      "name": "test_layout_rejects_fields_outside_record",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_engine_layout.py",
+      "name": "test_snapshot_requires_pointer_source_and_value_together",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_engine_layout.py",
+      "name": "test_compare_exchange_writes_only_when_all_expected_bytes_match",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_engine_layout.py",
+      "name": "test_compare_exchange_rolls_back_short_write",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_engine_layout.py",
+      "name": "test_legacy_write_guard_checks_full_record_and_tracks_field_writes",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_ownership_gate_applies_to_both_access_policies",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_patch_state_is_not_shared_between_profiles",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_packed_yihe_identity_is_diagnostic_instead_of_attach_gate",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_identity_still_rejects_non_x86_pe",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_packed_yihe_runtime_image_restores_full_66_profile_with_aslr",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_signature_scan_crosses_page_boundary",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_absolute_counter_814_profile_has_extended_effect_layout",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_absolute_counter_reader_is_mutually_exclusive_with_standard_reader",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_absolute_counter_version_resource_keeps_private_part_six",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_engine_identity_and_profile_do_not_require_ekd5_filename",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_composite_effect_layouts_cover_hybrid_and_extended_66",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_semantic_descriptor_fingerprints_group_equivalent_layouts",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_known_66_bases_have_expected_identity",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_public_66_signatures_and_patch_sites_match_both_bases",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_effect_assignment_66_codec_preserves_six_independent_values",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_effect_assignment_66_layout_matches_both_known_executables",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_effect_assignment_runtime_probe_dereferences_the_table_pointer",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_effect_assignment_runtime_probe_accepts_v716_empty_character",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_effect_assignment_runtime_probe_accepts_mixed_empty_characters",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_v716_save_files_contain_lossless_1024_1025_effect_tables",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_single_modified_patch_remains_unavailable_without_recipe",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_summary_reports_composite_access_surface",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_direct_mode_bypasses_evidence_but_not_missing_recipes",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_revive_entry_addresses_are_profile_scoped",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_auto_return_native_patch_matches_both_66_bases",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_patch_locator_accepts_complete_patched_state_only",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_patch_locator_rejects_partial_or_foreign_sites",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_auto_return_locator_accepts_complete_patched_state",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_auto_return_locator_rejects_partial_or_foreign_sites",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_locators_reject_original_and_patched_duplicate_candidates",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_modified_auto_return_signature_disables_only_that_feature",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_consumable_count_signatures_match_both_66_bases",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_runtime_probe_uses_compact_bool_and_ui_consumable_ranges",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_auto_return_patch_relocates_and_restores_three_sites",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_auto_return_third_site_failure_rolls_back_all_sites",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_known_sha_table_is_complete",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_xinnai_identity_person_abi_and_variable_boundaries",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_legacy_profiles_keep_normal_enabled_semantics",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_64_and_65_profiles_are_independent",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_consumable_slots_and_valid_rows_per_base",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_three_local_bases_resolve_their_item_limits",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_composite_64_and_65_effect_layouts_use_distinct_resolvers",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_local_64_adaptation_identity_keeps_static_layout_writable",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_local_220_disk_image_requires_runtime_unpack_before_writes",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_local_220_mapped_runtime_capture_enables_audited_layout",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_local_220_runtime_adapter_marker_is_accepted",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_local_220_runtime_capture_with_bad_anchor_stays_locked",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_65_runtime_probe_dereferences_255_by_8_effect_table",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_consumable_mapping_matrix_covers_standard_hybrid_and_65",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_item_row_codec_follows_the_resolved_engine_family",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_item_row_codec_uses_its_own_index_function_evidence",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_66_item_codec_is_not_inferred_from_consumable_boundary",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_65_packed_variant_does_not_fall_back_to_fixed_item_table",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_pe_read_does_not_cross_from_file_backed_bytes_into_bss",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_effect_and_fatal_name_sources_have_66_record_counts",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_engine_profile.py",
+      "name": "test_effect_name_catalog_is_profile_scoped_for_65_and_66",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_evidence_collector.py",
+      "name": "test_static_collector_writes_manifest_and_normalized_code",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_evidence_collector.py",
+      "name": "test_auto_return_static_collection_contains_native_patch_contract",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_evidence_collector.py",
+      "name": "test_runtime_collector_uses_wow64_context_api",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_evidence_collector.py",
+      "name": "test_verifier_derives_checks_from_samples_instead_of_manual_boolean",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_evidence_collector.py",
+      "name": "test_verifier_rejects_missing_machine_contract",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_evidence_collector.py",
+      "name": "test_obsolete_auto_return_matrix_commands_are_not_exposed",
+      "nativeStatus": "covered:evidence_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_15_byte_name_and_66_field_offsets",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_17_byte_name_and_65_field_offsets",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_treasure_filter_stops_at_the_66_equipment_boundary",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_zero_filled_runtime_style_table_fails_semantic_probe",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_unknown_item_row_codec_is_rejected_before_parsing",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_split_data_and_star_sources_are_joined_at_id_104",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_short_star_file_is_rejected",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_local_66_bases_have_complete_split_item_tables",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_local_65_and_houhei_use_17_byte_item_rows",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_standard_66_uses_15_byte_reordered_item_rows",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_65_layout_reads_256_physical_rows_and_keeps_255_sentinel",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_66_shipped_star_does_not_enable_the_extension",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_66_complete_star_enables_512_rows",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_item_layout.py",
+      "name": "test_66_real_255_name_is_a_physical_item_but_not_an_extension",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_b3_writer_and_same_pointer_detour_resolve_180_rows",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_b3_query_for_another_pointer_does_not_authorize_effect_table",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_b3_code_overrides_misleading_65_or_66_resource",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_relocated_item_icon_accessor_proves_field_order",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_runtime_catalog_replaces_valid_but_stale_disk_catalog",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_old_154_row_catalog_preserves_legacy_name_and_treasure_contract",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_failed_runtime_refresh_does_not_keep_stale_names",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_extended_runtime_name_change_beyond_byte_catalog_is_refreshed",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_lower_version_effect_domains_do_not_overread_neighboring_names",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_62_expanded_runtime_catalog_updates_both_table_bounds",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_legacy_position_entry_skips_proven_nop_padding",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_shuhan_abi_evidence_requires_exact_identity_signature_and_wrapper",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_runtime_profiles.py",
+      "name": "test_legacy_auto_return_keeps_oracle_machine_code_after_relocation",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_four_lower_profiles_share_the_proven_two_ranges_and_exclude_equipment_ids",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_runtime_probe_checks_the_second_range_before_enabling_writes",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_readonly_second_range_allows_display_but_blocks_single_and_bulk_writes",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_single_saves_at_both_edges_of_each_split_range_touch_exactly_one_counter",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_bulk_fill_and_clear_touch_all_43_counters_without_the_gap",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_split_bulk_failure_in_second_range_rolls_back_first_range",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_bulk_treasures_exclude_43_consumables_even_when_raw_flag_claims_treasure",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_person_noncanonical_flag_is_preserved_until_checkbox_changes",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_split_consumables.py",
+      "name": "test_live_pointer_read_failure_never_uses_the_previous_global_table",
+      "nativeStatus": "covered:item_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_legacy_fatal_preserves_all_opaque_people_when_value_changes",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_legacy_fatal_rejects_concurrent_game_changes",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_legacy_fatal_partial_write_restores_complete_record",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_fatal_save_rejects_changed_fixed_table_reference",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_effect_only_snapshot_commits_when_exclusive_is_unavailable",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_exclusive_only_snapshot_commits_without_effect_descriptor",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_exclusive_save_rejects_changed_fixed_table_reference",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_unknown_legacy_control_never_falls_back_to_fixed_address_writes",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_known_legacy_control_uses_the_session_patch_transaction",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_effect_save_rejects_layout_change_after_read",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_warehouse_level_edit_saves_without_replacing_the_item",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_stale_attach_result_does_not_replace_new_session_profile",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_scan_deadline_keeps_stable_profile_and_allows_initial_attach_retry",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_background_scan_does_not_block_qt_event_delivery",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_close_cancels_and_joins_an_active_scan",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_battle_hp_edit_preserves_opaque_and_normalized_buff_bytes",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_battle_rejects_concurrent_changes_anywhere_in_the_edited_unit",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_battle_partial_write_restores_the_entire_unit",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_battle_health_edits_preserve_unexposed_flag_bits",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_battle_save_rejects_changed_unit_count",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_battle_invalid_input_never_invokes_direction_helper",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_bulk_battle_edits_roll_back_all_affected_rows",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_inventory_multi_field_failure_restores_warehouse_and_money",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_bulk_inventory_failure_restores_all_consumables",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_clear_inventory_rejects_concurrent_opaque_byte_change",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_diy_compare_save_rejects_stale_data_and_session",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_diy_page_keeps_address_and_width_readonly_and_saves_value",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_legacy_ui_compat.py",
+      "name": "test_missing_version_resource_still_queues_runtime_detection",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_no_arguments_has_no_implicit_target_or_diagnostics",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_qt_creation_failure_writes_report_and_returns_startup_error",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_setup_ui_failure_is_reported_before_process_exit",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_explicit_pid_is_preserved",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_invalid_or_implicit_targets_are_rejected",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_diagnostic_reopens_only_the_explicit_pid_with_read_permissions",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_diagnostic_reuses_readonly_session_without_invalidating_scan_generation",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_diagnostic_marks_first_attachment_read_only_before_opening_handle",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_real_attachment_for_diagnostic_never_requests_write_access",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_background_profile_scan_uses_a_read_only_handle",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_diagnostic_timeout_writes_failure_and_exits_nonzero",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_diagnostic_waits_for_all_pages_and_the_completed_catalog",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_diagnostic_refuses_a_writable_session",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_successful_diagnostic_reads_exactly_eight_pages_without_save_or_helpers",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_page_exception_causes_nonzero_report_after_all_eight_reads",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_main_cli.py",
+      "name": "test_swallowed_reader_error_cannot_reuse_an_old_snapshot",
+      "nativeStatus": "covered:cli_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_owned_normal_patch_can_toggle_repeatedly_without_losing_capability",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_external_or_partial_patch_is_disabled_on_the_first_probe",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_two_transient_read_failures_preserve_owned_check_then_third_disables",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_third_unreadable_preprobe_rejects_uncheck_and_preserves_owned_value",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_same_identity_scan_preserves_profile_object_and_patch_recipe",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_owned_dynamic_stub_survives_recipe_less_scan_and_can_be_disabled",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_owned_dynamic_stub_byte_change_immediately_disables_control",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_ten_page_activations_reuse_ready_profile",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_unready_page_reprobes_data_without_rebuilding_owned_patch_profile",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_qt_activation_event_dispatches_to_real_ui_refresh_handler",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_qt_close_event_dispatches_to_session_cleanup",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_old_attachment_result_cannot_replace_profile_or_current_worker",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_old_scan_generation_and_process_identity_do_not_replace_current_worker",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_manual_revive_success_and_failure_restore_button",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_automatic_revive_failure_pauses_and_allows_user_to_reenable",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_lifecycle_ui.py",
+      "name": "test_dynamic_ownership_snapshot_is_detached_from_the_lease_table",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_original_owned_and_restore_keep_all_three_sites_reversible",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_external_fully_patched_sites_are_neither_claimed_nor_restored",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_partial_sites_are_rejected_and_diagnostics_name_addresses",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_foreign_bytes_block_restore_without_discarding_ownership",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_unreadable_probe_preserves_current_ownership",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_confirmed_external_restore_releases_ownership",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_short_write_remains_failed_even_after_verified_full_rollback",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_dynamic_owned_stub_survives_independent_readonly_session_probe",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_dynamic_foreign_call_site_is_preserved_on_enable_and_disable",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_dynamic_corrupted_stub_is_detected_and_not_freed",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_patch_runtime_memory.py",
+      "name": "test_dynamic_released_stub_page_is_an_immediate_external_change",
+      "nativeStatus": "covered:transaction_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_read_only_session_rejects_all_mutating_entry_points",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_code_patch_forces_and_restores_execute_writecopy_page",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_code_patch_calls_protect_even_when_page_is_already_rwx",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_code_patch_rolls_back_partial_write_before_protection_restore",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_code_patch_protect_failure_does_not_write",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_code_patch_flush_failure_rolls_back",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_code_patch_restore_failure_rolls_back_and_poisons_session",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_code_patch_crosses_two_pages_and_restores_each",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_width_specific_reads_are_zero_extended",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_write_checks_width_range_and_reads_back",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_out_of_range_access_is_rejected",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_legacy_read_failure_reports_address_to_ui_callback",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_legacy_write_failure_reports_address_to_ui_callback",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_reference_va_is_relocated_to_actual_module_base",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_patch_failure_rolls_back_earlier_sites",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_patch_repeated_toggle_and_external_change",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_session_snapshot_patch_is_restored_on_close",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_prepatched_external_site_is_not_claimed",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_partially_prepatched_transaction_is_rejected_without_writes",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_data_transaction_rolls_back_partial_failure",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_data_transaction_rejects_overlapping_ranges",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_direct_data_transaction_keeps_earlier_write_on_failure",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_direct_compare_exchange_ignores_stale_expected_bytes",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_guarded_compare_exchange_rejects_stale_bytes_in_direct_mode",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_guarded_compare_exchange_rolls_back_partial_direct_write",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_guarded_compare_exchange_rejects_overlap_and_unequal_width",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_compat_patch_rejects_external_bytes_and_preserves_ownership",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_dynamic_stub_enable_restore_and_release",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_dynamic_patch_enabled_query_tracks_session_ownership",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_dynamic_stub_refuses_external_branch_change_without_free",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_dynamic_stub_refuses_release_while_thread_eip_is_inside",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_compat_dynamic_stub_checks_ownership_and_thread_eip",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_dynamic_call_operand_only_owns_four_rel32_bytes",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_operand_only_patch_refuses_external_opcode_change",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_remote_call_releases_both_allocations_and_thread",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_remote_call_failure_still_releases_both_allocations",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_remote_timeout_poison_keeps_allocations_and_blocks_next_call",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_remote_call_allows_unverified_abi_but_keeps_address_guard",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_remote_entry_mutation_rejects_before_allocating",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_revive_wrapper_rejects_invalid_arguments_before_remote_thread",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_process_memory.py",
+      "name": "test_close_is_idempotent_and_closes_owned_backend",
+      "nativeStatus": "covered:memory_contracts"
+    },
+    {
+      "source": "test_runtime_catalog.py",
+      "name": "test_absent_files_use_only_proven_runtime_catalog_without_writes",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_catalog.py",
+      "name": "test_uninitialized_or_unproven_runtime_table_is_not_enabled",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_catalog.py",
+      "name": "test_existing_file_catalog_is_preserved",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_catalog.py",
+      "name": "test_extended_names_do_not_expand_byte_equipment_write_domain",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_regions.py",
+      "name": "test_live_readonly_pages_are_scanned_even_without_execute_flag",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_regions.py",
+      "name": "test_signature_crosses_adjacent_pages_and_keeps_reference_address",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_regions.py",
+      "name": "test_unreadable_hole_is_never_zero_filled_or_joined",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_regions.py",
+      "name": "test_refresh_and_new_session_invalidate_content_identity",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_regions.py",
+      "name": "test_rva_capture_ignores_protected_disk_section_flags",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_runtime_regions.py",
+      "name": "test_semantic_cache_cannot_cross_sessions_or_mutated_runtime_code",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_semantic_resolver.py",
+      "name": "test_three_anchor_descriptor_is_read_write",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_semantic_resolver.py",
+      "name": "test_reader_without_writer_produces_read_only_descriptor",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_semantic_resolver.py",
+      "name": "test_duplicate_reader_is_rejected_despite_sentinel_values",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_semantic_resolver.py",
+      "name": "test_conflicting_pointer_operands_are_rejected",
+      "nativeStatus": "not-applicable:python-internal-abstraction"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_target_is_66_by_resource_and_independent_layouts",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_imported_reader_is_mutually_exclusive_with_prior_recipes",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_fatal_recalculate_and_move_recipes_follow_live_consumers",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_fatal_bound_must_call_the_same_indexer",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_fatal_bound_second_call_must_reach_the_same_five_slot_consumer",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_fatal_consumer_must_still_prove_five_slots_and_row_15",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_recalculate_internal_call_target_is_checked_for_nop_variant",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_extended_consumable_ids_keep_their_own_storage_domain",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_consumable_recipe_rejects_one_accessor_using_a_different_base",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_profile.py",
+      "name": "test_sha_identity_does_not_enable_a_changed_reader",
+      "nativeStatus": "covered:profile_contracts"
+    },
+    {
+      "source": "test_single_exe_ui.py",
+      "name": "test_expanded_names_and_endpoint_count_addresses",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_single_exe_ui.py",
+      "name": "test_missing_fatal_labels_do_not_disable_resolved_assignments",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_startup_smoke.py",
+      "name": "test_cli_requires_output_before_smoke_exit_and_rejects_attach",
+      "nativeStatus": "covered:startup_contracts"
+    },
+    {
+      "source": "test_startup_smoke.py",
+      "name": "test_cli_smoke_has_no_implicit_game_target",
+      "nativeStatus": "covered:startup_contracts"
+    },
+    {
+      "source": "test_startup_smoke.py",
+      "name": "test_completed_smoke_writes_eight_pages_and_exits_successfully",
+      "nativeStatus": "covered:startup_contracts"
+    },
+    {
+      "source": "test_startup_smoke.py",
+      "name": "test_missing_resource_fails_instead_of_counting_process_liveness",
+      "nativeStatus": "covered:startup_contracts"
+    },
+    {
+      "source": "test_startup_smoke.py",
+      "name": "test_hidden_window_does_not_pass_startup_smoke",
+      "nativeStatus": "covered:startup_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_fixed_window_and_original_eight_pages",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_expanded_65_item_domains_are_visible_but_write_domains_stay_split",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_version_selector_geometry_labels_and_auto_mapping",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_effect_name_list_uses_current_profile_and_ui_boundary",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_original_page_actions_and_pivot_signal_surface_exist",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_attach_pipeline_opens_memory_before_runtime_profile_detection",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_effect_layout_switches_without_moving_lower_sections",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_ui_source_contains_the_extended_effect_controls",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_effect_assignment_66_ui_round_trip_and_empty_normalization",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_effect_assignment_66_v716_empty_character_round_trip",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_effect_assignment_66_mixed_empty_characters_round_trip",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_effect_assignment_66_partial_write_rolls_back_snapshot",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_hybrid_8_byte_effect_round_trip_preserves_opaque_empty_tokens",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_exclusive_round_trip_preserves_opaque_person_and_item_tokens",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_exclusive_explicit_empty_and_zero_use_canonical_old_semantics",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_exclusive_save_without_cache_uses_current_memory_as_base",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_power_transaction_rolls_back_both_when_exclusive_write_fails",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_direct_66_profile_enables_write_controls",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_all_factions_patch_uses_complete_66_instructions",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_66_auto_return_button_uses_native_three_site_patch",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_66_auto_return_partial_patch_is_not_claimed",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_66_boolean_variables_use_msb_first_bitset",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_66_consumable_range_and_single_byte_round_trip",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_66_consumable_empty_slot_label",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_66_bulk_consumable_transactions_touch_exactly_352_items",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_consumable_only_save_does_not_require_warehouse_selection",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_66_warehouse_preserves_opaque_high_item_when_saving_money",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_war_save_keeps_original_helper_call_surface",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_person_save_does_not_implicitly_recalculate",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_item_save_keeps_original_refresh_order",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_power_save_keeps_zero_value_member_clearing",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_fatal_save_refreshes_snapshot_without_remote_helper",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_ui.py",
+      "name": "test_clear_item_keeps_warehouse_boundary_at_200_slots",
+      "nativeStatus": "covered:qt_ui_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_native_layout_from_profile_resolves_offset_and_verified_domain",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_unverified_bitset_cannot_become_writable",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_legacy_defaults_use_dword_array",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_unverified_legacy_dword_cannot_become_writable",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_physical_address_masks_and_non_aligned_spans",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_invalid_layouts_and_ranges_rejected",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_full_domain_read_is_one_packed_read_and_immutable_snapshot",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_non_aligned_snapshot_only_exposes_its_logical_range",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_tail_and_empty_reads_are_exact",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_snapshot_rejects_wrong_byte_span",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_same_byte_and_adjacent_edits_merge_clean_gap_is_excluded",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_all_native_bits_can_toggle_and_restore_without_neighbor_changes",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_non_aligned_edit_preserves_outside_bits_and_tail_padding",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_reserved_and_person_table_indexes_rejected_before_transaction",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_invalid_edits_fail_before_any_valid_write",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_unchanged_and_duplicate_edits_do_not_create_redundant_writes",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_session_lifecycle_guards_also_apply_in_direct_compat_mode",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_partial_write_rolls_back_all_ranges_and_keeps_original_snapshot",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_legacy_dword_preserves_truthy_values_and_stride_padding",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_legacy_conflict_compares_high_bytes_and_excludes_clean_padding",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_full_domain_archives_are_compact_portable_and_roundtrip",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_reserved_browse_records_are_not_exported",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_variable_storage.py",
+      "name": "test_invalid_archives_are_rejected_before_import",
+      "nativeStatus": "covered:variable_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_real_carchive_and_pyz_match_current_source",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_recursive_filename_normalization_retains_nested_semantics",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_old_packaged_main_is_rejected",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_frozenset_constants_are_stable_across_packaging_and_hash_seeds",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_old_nested_function_bytecode_is_rejected",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_missing_critical_module_fails_manifest",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_pe64_or_wrong_machine_is_rejected",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_different_python_magic_is_rejected_before_unmarshal",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_verify_release.py",
+      "name": "test_cli_writes_failed_manifest_and_returns_nonzero",
+      "nativeStatus": "covered:verify_release_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_missing_win8_api_reports_unknown_without_inventing_policy",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_win7_api_stub_errors_remain_unknown_and_nonfatal",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_access_denied_is_a_query_error_not_unsupported_api",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_supported_api_returns_real_policy_flags",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_win7_x86_system_uses_iswow64process_fallback",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_win7_x64_system_accepts_x86_game_from_x86_tool",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_x86_tool_rejects_native_x64_target",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_x64_host_can_read_x86_target_but_cannot_write",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_exited_process_is_rejected_before_architecture_queries",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_iswow64process2_rejects_arm64_and_keeps_x86_emulation",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_fake_memory_writes_keep_working_on_x64_host",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_access_denied_keeps_code_and_explains_permissions",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_missing_process_and_architecture_failures_are_distinguished",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_invalid_pid_never_opens_a_process",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_x64_writable_open_rejected_without_requesting_handle",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_open_process_access_denied_gives_actionable_error",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_failed_live_validation_closes_new_handle",
+      "nativeStatus": "covered:platform_contracts"
+    },
+    {
+      "source": "test_windows_api_compatibility.py",
+      "name": "test_backend_read_access_denied_keeps_address_and_permission_hint",
+      "nativeStatus": "covered:platform_contracts"
+    }
+  ]
+}

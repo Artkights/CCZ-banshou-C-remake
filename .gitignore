@@ -1,0 +1,13 @@
+/build/
+/dist/
+/artifacts/
+/third_party/archives/
+/third_party/qt-*-static-*/
+__pycache__/
+.vs/
+*.user
+*.pdb
+*.ilk
+*.obj
+*.exp
+CMakeUserPresets.json

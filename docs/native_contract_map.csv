@@ -1,0 +1,28 @@
+source,name,nativeStatus,evidence
+test_battle_tick_transactions.py,*,covered:transaction_contracts,guarded row/state transaction rollback tests
+test_boolean_profile.py,*,covered:variable_contracts,bitset/dword layout and writable domain tests
+test_boolean_ui.py,*,covered:qt_ui_contracts,boolean context actions and widget contracts
+test_build_release.py,*,not-applicable:python-build-script,Python build script internals; C++ release verified by verify_release_contracts
+test_capability_evidence.py,*,covered:evidence_contracts,bundle digest/manifest/validation tests
+test_compatibility.py,*,covered:profile_contracts,legacy profile compatibility tests
+test_engine_layout.py,*,not-applicable:python-internal-abstraction,layout invariants covered by profile_contracts
+test_engine_profile.py,*,covered:profile_contracts,detection/address/limit tests
+test_evidence_collector.py,*,covered:evidence_contracts,static/oracle/runtime/inspect/verify tests
+test_item_layout.py,*,covered:item_contracts,255/256/512 item layout tests
+test_legacy_runtime_profiles.py,*,covered:profile_contracts,legacy 6.1-6.5 runtime profile tests
+test_legacy_split_consumables.py,*,covered:item_contracts,43-slot split consumable mapping tests
+test_legacy_ui_compat.py,*,covered:qt_ui_contracts,legacy page and control contracts
+test_main_cli.py,*,covered:cli_contracts,CLI routing and exit-code tests
+test_patch_lifecycle_ui.py,*,covered:qt_ui_contracts,patch toggle and detach restore contracts
+test_patch_runtime_memory.py,*,covered:transaction_contracts,patch compare-exchange and rollback tests
+test_process_memory.py,*,covered:memory_contracts,memory read/write/protection transaction tests
+test_runtime_catalog.py,*,covered:profile_contracts,runtime catalog schema and identity tests
+test_runtime_regions.py,*,covered:profile_contracts,runtime module region tests
+test_semantic_resolver.py,*,not-applicable:python-internal-abstraction,pointer/descriptor invariants covered by profile_contracts
+test_single_exe_profile.py,*,covered:profile_contracts,single-exe 256 consumable profile tests
+test_single_exe_ui.py,*,covered:qt_ui_contracts,single-exe 512 item UI contracts
+test_startup_smoke.py,*,covered:startup_contracts,startup smoke JSON contract test
+test_ui.py,*,covered:qt_ui_contracts,window geometry/text/page contracts
+test_variable_storage.py,*,covered:variable_contracts,array/bitset/pointer variable tests
+test_verify_release.py,*,covered:verify_release_contracts,release SHA/startup/evidence verification
+test_windows_api_compatibility.py,*,covered:platform_contracts,Win32 UTF-16 path/hash/resource tests

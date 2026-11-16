@@ -1,0 +1,28 @@
+#pragma code_page(65001)
+#include <windows.h>
+1 RT_MANIFEST "app.manifest"
+101 ICON "logo.ico"
+102 CURSOR "target.cur"
+103 RCDATA "catalog.json"
+104 RCDATA "baseline.json"
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+ BLOCK "StringFileInfo"
+ BEGIN
+  BLOCK "080404B0"
+  BEGIN
+   VALUE "FileDescription", "曹操传扳手 C++ 原生版\0"
+   VALUE "FileVersion", "1.0.0.0\0"
+   VALUE "ProductName", "Banshou Native\0"
+   VALUE "OriginalFilename", "扳手.exe\0"
+  END
+ END
+ BLOCK "VarFileInfo"
+ BEGIN
+  VALUE "Translation", 0x0804, 1200
+ END
+END
