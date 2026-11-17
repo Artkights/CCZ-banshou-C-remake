@@ -1,9 +1,9 @@
 area,contract,python_reference,cpp_implementation,status,verified_by
-ui.static,700x530 fixed window and eight toolbar pages,untitled.ui,ui/mainwindow.ui (structured copy, text deviations documented),implemented,qt_ui_contracts
-ui.actions,eight page actions and dynamic war_input_51..54/var_save_1..3,mywindow.py setupUi/otherSettings,qt_mainwindow.cpp createPythonOnlyControls,implemented,qt_ui_contracts geometry checks
-ui.layout,every button/label text fits its rect and no control overlaps,mywindow.py geometry,ui/mainwindow.ui + qt_ui_tests text-fit contract,implemented,qt_ui_contracts text-fit and overlap assertions
-ui.boolean_archive,CCZBOOL1 full export/import and four context actions,_setup_boolean_actions/exportBooleanArchive/importBooleanArchive,setupBooleanActions/saveBooleanPage/exportBooleanArchive/importBooleanArchive,implemented,qt_ui_contracts (4 actions + tooltip)
-ui.warehouse_rows,warehouse rows show id:name with empty and invalid markers,mywindow.py onItem,warehouseRowText + refreshWarehouse,implemented,qt_ui_contracts warehouseRowText assertions
+ui.static,700x530 fixed window and eight toolbar pages,untitled.ui,src/win32_control_table.inc (structured copy, text deviations documented),implemented,win32_ui_contracts
+ui.actions,eight page actions and dynamic war_input_51..54/var_save_1..3,mywindow.py setupUi/otherSettings,win32_mainwindow.cpp createPythonOnlyControls,implemented,win32_ui_contracts geometry checks
+ui.layout,every button/label text fits its rect and no control overlaps,mywindow.py geometry,src/win32_control_table.inc + qt_ui_tests text-fit contract,implemented,win32_ui_contracts text-fit and overlap assertions
+ui.boolean_archive,CCZBOOL1 full export/import and four context actions,_setup_boolean_actions/exportBooleanArchive/importBooleanArchive,setupBooleanActions/saveBooleanPage/exportBooleanArchive/importBooleanArchive,implemented,win32_ui_contracts (4 actions + tooltip)
+ui.warehouse_rows,warehouse rows show id:name with empty and invalid markers,mywindow.py onItem,warehouseRowText + refreshWarehouse,implemented,win32_ui_contracts warehouseRowText assertions
 profile.detect,version resource + known SHA + legacy signature fallback,detect_engine/legacy_profile,ProfileRegistry::detect,implemented,profile_contracts; 6.5/6.6 samples; 6.1-6.4 static
 profile.consumables,352/105/256/43 consumable mappings,locate_consumable_mapping_composite,ConsumableSpec + locatePatternBase,implemented,profile_contracts; rt-6.5 105 and rt-6.6 352; 256/43 unit
 profile.item_layout,Data.e5/Star.e5 255/256/512 rows and codecs,detect_item_table_layout/load_item_table_66,applyItemFileLayout + UI item cache,implemented,profile_contracts 255/512 and sample 256
@@ -16,17 +16,17 @@ patches.locator,signature locators only no fixed fallback,no fixed fallback,_PAT
 patches.auto_return,6.6 native second-action three NOP sites,locate_auto_return_patch_66,LegacyAutoReturnPatch::set,implemented,evidence_contracts signature/call-target checks; legacy reject
 session.lifecycle,1000 attach/detach and detach restore,MemorySession/SessionController,SessionController + releaseControlPatches,implemented,lifecycle 1000 cycles
 session.attach_retry,retry profile detection until the engine is ready,mywindow.py 500ms rescan loop,SessionController::attach 60x500ms backoff,implemented,lifecycle + manual 6.5/6.6 attach
-battle.save_side_effects,save writes state only and refreshes direction when changed,mywindow.py saveWar/onTurn,QtMainWindow::saveBattle,implemented,remote_contracts reject changePosition on 6.6
-battle.area_kill,only live enemies in the rectangle in one transaction,mywindow.py kill_area,QtMainWindow::killBattleArea + BattleService::writeRows,implemented,transaction_contracts batch rollback
-person.equipment_ranges,weapon 0..69 armor 70..108 accessory 109..,mywindow.py saveData,QtMainWindow::savePerson,implemented,parity transaction/profile ranges
-person.recalculate_invariants,recalculate must not touch HP/MP base stats job level merit exp,mywindow.py recal,QtMainWindow::recalculatePerson,implemented,parity remote/profile invariants
-diy.catalog_paths,exe dir then user data dir then cwd with one-time copy,compatibility.py migrate_user_files,QtMainWindow::initializeAttachedUi,implemented,manual (documented in docs/deviations.md)
-performance.batch_reads,warehouse page reads all rows in one call,mywindow.py onItem,warehouse readRecords + lazy page refresh,implemented,qt_ui_contracts + manual timing
+battle.save_side_effects,save writes state only and refreshes direction when changed,mywindow.py saveWar/onTurn,Win32MainWindow::saveBattle,implemented,remote_contracts reject changePosition on 6.6
+battle.area_kill,only live enemies in the rectangle in one transaction,mywindow.py kill_area,Win32MainWindow::killBattleArea + BattleService::writeRows,implemented,transaction_contracts batch rollback
+person.equipment_ranges,weapon 0..69 armor 70..108 accessory 109..,mywindow.py saveData,Win32MainWindow::savePerson,implemented,parity transaction/profile ranges
+person.recalculate_invariants,recalculate must not touch HP/MP base stats job level merit exp,mywindow.py recal,Win32MainWindow::recalculatePerson,implemented,parity remote/profile invariants
+diy.catalog_paths,exe dir then user data dir then cwd with one-time copy,compatibility.py migrate_user_files,Win32MainWindow::initializeAttachedUi,implemented,manual (documented in docs/deviations.md)
+performance.batch_reads,warehouse page reads all rows in one call,mywindow.py onItem,warehouse readRecords + lazy page refresh,implemented,win32_ui_contracts + manual timing
 remote.calls,recalculate/revive/direction ABI; position rejected on 6.6,hook.py,RemoteServices,implemented,compile + ABI addresses; 6.6 position rejected; live game behavior manual
 diagnostics.cli,--attach-pid/--diagnostic-output/--diagnostic-exit,main.py parse_arguments,runWindow CLI,implemented,startup/cli_contracts
 diagnostics.startup_smoke,banshou-startup-smoke-v1,startup_smoke,runWindow QTimer smoke,implemented,startup_contracts
 diagnostics.read_only_pages,read-only eight-page diagnostic,DiagnosticRun,diagnosticSnapshot,implemented,qt/mock_target diagnostic run
 evidence.static,profile/limits/addresses/consumables/variables JSON,evidence CLI,evidenceCli static/legacy summary,implemented,evidence_contracts 25 bundles
 evidence.runtime,debugger breakpoint samples and bundle,evidence_collector.py,breakpoint collector + verify/manifest,implemented,evidence_contracts mock_target runtime verify
-release.single_exe,static Qt /MT x86 single EXE with no external runtime,build_release.py,tools/build_static_qt.ps1 + build_release.ps1 -StaticQt,implemented,single-exe-static 13.9MB; import audit passes
+release.single_exe,static Win32 /MT x86 single EXE with no external runtime,build_release.py,tools/（已移除的静态 Qt 构建脚本） + build_release.ps1 -StaticWin32,implemented,single-exe-native 13.9MB; import audit passes
 tests.python_contracts,399 Python contracts,399 tests,14 CTest suites + parity_tests,implemented,coverage_contracts 399 terminal

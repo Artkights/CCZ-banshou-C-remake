@@ -1,6 +1,6 @@
 # 扳手 Native C++
 
-这是旧 Python 扳手的 C++17/Qt Widgets 迁移工程。Qt 层直接使用旧版
+这是旧 Python 扳手的 C++17/Win32 原生 迁移工程。Win32 层直接使用旧版
 `untitled.ui`，保持 700x530 固定窗口、八个工具栏入口、原对象名和动态控件；
 核心层保留 Unicode 路径访问、x86 PE 画像、会话 generation、内存读写、远程
 线程生命周期和旧版直写顺序。
@@ -21,7 +21,7 @@ C++ 侧已完成与 Python 版的功能、UI、写安全等价迁移：
 - 契约：`resources/baseline.json` 的 399 条 Python 测试全部有终态
   （`covered:<ctest>` 或 `not-applicable:<reason>`），`coverage_contracts`
   强制校验，不允许 `pending`。
-- CTest 14 项全部通过：`native_contracts`、`lifecycle`、`qt_ui_contracts`、
+- CTest 14 项全部通过：`native_contracts`、`lifecycle`、`win32_ui_contracts`、
   `memory/profile/item/variable/transaction/evidence/cli/startup/coverage/
   verify_release/platform_contracts`。
 
@@ -31,7 +31,7 @@ C++ 侧已完成与 Python 版的功能、UI、写安全等价迁移：
 
 ```powershell
 cmake -S . -B C:\banshou-build\cmake4d -G "Visual Studio 17 2022" -A Win32 `
-  -DCMAKE_PREFIX_PATH=D:/Qt/5.14.2/msvc2017
+  -DCMAKE_PREFIX_PATH=D:/Win32/5.14.2/msvc2017
 cmake --build C:\banshou-build\cmake4d --config Release --parallel 2
 ctest --test-dir C:\banshou-build\cmake4d -C Release --output-on-failure
 ```
@@ -58,35 +58,43 @@ bundle 的 `bundleDigest`、`rawSampleDigest`、`manifest.json` 与 Python
 
 ## 发布
 
-单文件静态版是默认发布形态，只需一个 `dist\扳手.exe`，不附带任何 DLL。
+默认且唯一的发布形态是 `single-exe-native`：一个 `dist\扳手.exe`，不附带任何 DLL，
+不依赖 Qt / VC 运行库，也不再需要任何构建期第三方框架。
 
-首次发布需要一份静态 Qt（安装器不提供 Windows 静态包，需自行编译一次）：
+构建命令：
 
-```powershell
-.\tools\build_static_qt.ps1 -Prefix F:\qt5-static
-.\tools\build_release.ps1 -StaticQt -QtPrefix F:\qt5-static
-.\tools\verify_release.ps1
-```
+    tools/build_release.ps1
+    tools/verify_release.ps1
 
-- `build_static_qt.ps1`：用 MSVC v142 + x86 静态 CRT 编译 Qt 5.14.2（Core/Gui/
-  Widgets 与 qwindows/qoffscreen 插件），输出 `lib\cmake\Qt5\Qt5Config.cmake`。
-  `-VerifyOnly` 只校验工具链与源码；`-SdkVersion 10.0.19041.0` 可锁定 SDK。
-- `build_release.ps1 -StaticQt`：`BANSHOU_SINGLE_EXE=ON`，动态 CRT 改为 `/MT`，
-  链接 Qt 静态库与平台插件，并执行 `check_single_exe.ps1` 导入审计。
+构建只需要 MSVC v142（Win7 兼容）与 Windows SDK；控件几何由
+`src/win32_control_table.inc` 提供，该文件由 `tools/gen_control_table.py`
+从原设计稿生成后入库，运行期不依赖 Python 或设计稿。
+
 - `dist\release.json` 记录模式、EXE SHA256 与文件清单；`dist\verify-release.json`
-  记录 PE32/x86、版本资源、SHA、399 契约、启动自检和 6.5 证据采集结果。
-- 旧的便携动态包已归档到 `dist\_legacy-portable-dynamic-qt\`，仅作回退用途。
+  记录 PE32/x86、版本资源、SHA、399 契约与启动自检结果。
+- `tools/check_single_exe.ps1` 审计导入表，禁止 Qt/VC 运行库与外部 DLL。
 
-当前发布（2026-11-16，单文件静态版）：
+当前发布（2026-11-17，单文件原生版）：
 
-- 模式：`single-exe-static`
-- EXE：`dist\扳手.exe`，13,814,784 字节
-- SHA256：`2356A3ADE41EF63A7A30CD0EE92928C17B7BD624B252EBB86790DEB32A442C2B`
-- 依赖：仅系统 DLL（见 `verify-release.json` 的导入审计），无 Qt/VC 运行库
+- 模式：`single-exe-native`
+- EXE：`dist\扳手.exe`，2,576,384 字节
+- SHA256：`1891329FAAFF824080467DBF5A3D91CBE682DE370AA58F1B6DB7A5339EDAC4F9`
+- 导入：BCRYPT / COMCTL32 / DBGHELP / GDI32 / KERNEL32 / OLE32 / SHELL32 / USER32 / VERSION
+
+## 界面与功能覆盖
+
+界面按原设计稿严格复刻：700×530 客户区、工具栏 8 页、315 条控件描述（含 9 个页面容器）
+加 8 个工具栏按钮，坐标、文案与字号逐项对齐；`win32_ui_contracts` 对几何、
+文案、遮挡与隐藏状态做自动断言。
+
+当前已接通的交互：窗口创建与 8 页切换、附加进程（`--attach-pid`）、控制页 9 项
+（补丁 / 托管 / 自动回归 / 自动复活标记）、仓库页刷新与单槽保存、启动烟测与诊断 JSON。
+
+其余页面的**后端服务与 399 条契约完整保留并全部通过测试**，但其 Win32 控件与
+服务之间的读写编排仍在补齐中；详见 `CHANGELOG.md` 与提交说明。
 
 ## 验收边界
 
 自动合同覆盖画像、消耗品、物品布局、变量、事务回滚、证据采集、CLI、启动自检
-和 Qt 控件合同；真实游戏内的 6.1–6.4 派生样本、远程调用 ABI 行为仍建议按
-`docs/python_cpp_migration_matrix.csv` 的 `verified_by` 列做人工抽查。单文件静
-态版已完成构建与导入审计，并在空目录中独立启动验证（八页、零内存写入）。
+和 Win32 控件合同；真实游戏内的 6.1–6.4 派生样本、远程调用 ABI 行为仍建议按
+`docs/python_cpp_migration_matrix.csv` 的 `verified_by` 列做人工抽查。

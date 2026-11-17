@@ -1,5 +1,5 @@
 #include "evidence.hpp"
-#include "window.hpp"
+#include "win32_mainwindow.hpp"
 #include <shellapi.h>
 #include <string>
 int APIENTRY wWinMain(HINSTANCE instance, HINSTANCE, LPWSTR, int) {

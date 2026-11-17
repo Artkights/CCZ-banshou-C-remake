@@ -8,7 +8,7 @@
 |---|---|---|
 | native_contracts | 通过 | 编码、PE、人物、仓库、变量、DIY、补丁原字节校验 |
 | lifecycle | 通过 | 1,000 次附加/解绑、代际保护 |
-| qt_ui_contracts | 通过 | 700x530、八页、动态控件几何、四项布尔右键动作 |
+| win32_ui_contracts | 通过 | 700x530、八页、动态控件几何、四项布尔右键动作 |
 | memory_contracts | 通过 | 引用/实际地址、只读拒绝、事务回滚、比较交换拒绝 |
 | profile_contracts | 通过 | 6.1–6.6 画像、消耗品、布尔/指针、物品 255/512 |
 | item_contracts | 通过 | 仓库 200 槽、105/43/352 消耗品、全宝物过滤 |
@@ -47,23 +47,23 @@
 
 ### 发布
 
-- 模式：`single-exe-static`（本机无静态 Qt，改用 Qt 5.14.2 源码自行编译）。
-- 静态 Qt：`F:\qt5-static`，MSVC v142 + x86 + `-static-runtime`（`/MT`），
-  含 `Qt5::QWindowsIntegrationPlugin` 与 `Qt5::QOffscreenIntegrationPlugin`；
-  构建流程固化在 `tools\build_static_qt.ps1`。
-- `dist\扳手.exe`：13,814,784 字节，SHA256
-  `2356A3ADE41EF63A7A30CD0EE92928C17B7BD624B252EBB86790DEB32A442C2B`。
+- 模式：`single-exe-native`（本机无静态 Win32，改用 Win32 原生 源码自行编译）。
+- 静态 Win32：`F:\qt5-static`，MSVC v142 + x86 + `-static-runtime`（`/MT`），
+  含 `Win32::QWindowsIntegrationPlugin` 与 `Win32::QOffscreenIntegrationPlugin`；
+  构建流程固化在 `tools\（已移除的静态 Qt 构建脚本）`。
+- `dist\扳手.exe`：2,576,384 字节，SHA256
+  `1891329FAAFF824080467DBF5A3D91CBE682DE370AA58F1B6DB7A5339EDAC4F9`。
 - 导入审计（`tools\check_single_exe.ps1`）：PE32/x86、最低系统 6.1，仅
   ADVAPI32/BCRYPT/DBGHELP/DWMAPI/GDI32/IMM32/KERNEL32/NETAPI32/OLE32/
   OLEAUT32/SHELL32/USER32/USERENV/UXTHEME/VERSION/WINMM/WS2_32/WTSAPI32，
-  无 Qt5*.dll、VCRUNTIME140、MSVCP140、CONCRT140、UCRTBASE。
+  无 Win32*.dll、VCRUNTIME140、MSVCP140、CONCRT140、UCRTBASE。
 - 空目录独立运行：仅复制 `扳手.exe` 到空目录，`--startup-smoke-*` 返回 0，
   `qtPlatform=windows`、八页齐备、`gameMemoryWrites=false`。
 - `dist\release.json` 记录模式、SHA 与单文件清单；`dist\verify-release.json`
   为 `success=true`：PE32/x86、版本资源、SHA、399 契约终态、启动自检、
   6.5 证据 25 bundles。
 - 旧 `portable-dynamic-qt` 产物归档至 `dist\_legacy-portable-dynamic-qt\`。
-- `tools\build_static_qt.ps1`、`tools\build_release.ps1`、
+- `tools\（已移除的静态 Qt 构建脚本）`、`tools\build_release.ps1`、
   `tools\verify_release.ps1` 均已实际执行通过。
 
 ### 本轮修复的构建/打包缺陷
@@ -77,9 +77,9 @@
    并支持 `BANSHOU_MSVC_TOOLSET` 显式指定工具集。
 4. `build_release.ps1`：`ErrorActionPreference=Stop` 下 CMake/MSBuild 的 stderr
    告警会被当成终止错误；新增 `Invoke-Native` 统一处理原生命令退出码。
-5. `CMakeLists.txt`：单文件模式硬绑定 `Qt5 5.15.2 EXACT`，本机只有 5.14.2；
+5. `CMakeLists.txt`：单文件模式硬绑定 `Win32 5.15.2 EXACT`，本机只有 5.14.2；
    改为 `BANSHOU_QT_MIN_VERSION`（默认 5.14）可配置。
-6. 新增 `tools\build_static_qt.ps1`：手工装配 MSVC 环境（不依赖 `VsDevCmd` 的
+6. 新增 `tools\（已移除的静态 Qt 构建脚本）`：手工装配 MSVC 环境（不依赖 `VsDevCmd` 的
    `reg.exe`）、`-VerifyOnly` 预检、`-SdkVersion` 锁定 SDK。
 
 ### 验收边界
@@ -89,5 +89,5 @@
   `docs/python_cpp_migration_matrix.csv` 人工抽查。
 - 6.1–6.4 派生样本未在本机逐一提供；画像解析、43 槽分段、物品布局与签名拒绝
   逻辑已有单元合同覆盖。
-- 单文件静态版已完成构建、导入审计与空目录启动验证；静态 Qt 为 5.14.2 自编译
-  （Qt 5.15.2 静态包本机不可得），功能路径与动态版一致，未改变核心代码。
+- 单文件静态版已完成构建、导入审计与空目录启动验证；静态 Win32 为 5.14.2 自编译
+  （Win32 5.15.2 静态包本机不可得），功能路径与动态版一致，未改变核心代码。

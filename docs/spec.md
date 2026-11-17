@@ -9,21 +9,21 @@
 1. **功能等价**：八页 UI、6.1–6.6 画像、消耗品 352/105/43/256 槽、物品表 255/256/512 行、6.6 位集布尔 1536 可写/2048 浏览、481 指针变量、特效 4+2 与 3+1、必杀 80×16、远程调用、控制补丁、6.6 自动回归、布尔归档、诊断 CLI 均可用。
 2. **写入安全等价**：所有页面保存均为“读取快照 → 比较交换 → 失败回滚”；未知字节保留；指针/布局变化拒绝写入。
 3. **契约等价**：`resources/baseline.json` 的 399 条 Python 测试逐条有 `nativeStatus`，只允许 `covered:<ctest>` 与 `not-applicable:<code>` 两种终态；新增 `coverage_contracts` CTest 强制校验，出现 `pending` 即失败。`not-applicable` 仅限 Python 构建脚本内部与 Python 内部抽象（见 §7）。
-4. **发布可用**：`BANSHOU_SINGLE_EXE`（单文件静态版，Qt 由 `tools/build_static_qt.ps1`
-   从源码编译并静态链接，含平台插件）；若静态 Qt 不可得，退回便携动态 Qt Release
-   （EXE + Qt DLL + platforms + 运行库 + 说明），`verify_release.ps1` 全绿，并在包内与
+4. **发布可用**：`BANSHOU_SINGLE_EXE`（单文件静态版，Win32 由 `tools/（已移除的静态 Qt 构建脚本）`
+   从源码编译并静态链接，含平台插件）；若静态 Win32 不可得，退回便携动态 Win32 Release
+   （EXE + Win32 DLL + platforms + 运行库 + 说明），`verify_release.ps1` 全绿，并在包内与
    README/ACCEPTANCE 明确标注实际模式，不冒充单文件静态版。
 
 ## 2. 现状基线（已核实）
 
-- 构建通过：`native_contracts`、`lifecycle`、`qt_ui_contracts` 3 项 CTest 全绿。
+- 构建通过：`native_contracts`、`lifecycle`、`win32_ui_contracts` 3 项 CTest 全绿。
 - `resources/catalog.json` schema 2：44 常量、33 签名、6 个 legacy 画像、base66、remoteCalls、patchLocators。
 - `resources/baseline.json` schema 2：399 条契约，当前全部 `pending`。
 - 证据 CLI 仅有 `--evidence <exe>` 静态摘要；Python `evidence_collector.py` 的 `static/oracle/runtime/inspect/verify/manifest` 未迁移。
 - `ExclusiveEffectService::write` 从零构造 16 字节，未保留未知字节且非比较交换；`EffectService::write`、`FatalService::write`、`PersonService::write`、`WarehouseService`、`BattleService` 仍是非守卫写或仅异常回滚。
 - `Capability` 只解析 `state/reason`，缺 `reason_code/recipe`，无法做能力门控和证据配方。
 - Python `_setup_boolean_actions` 的“保存选中行 / 保存本页全部修改 / 全量导出 / 全量导入并保存”四项，C++ 仅实现后两项。
-- 本机仅 Qt 5.14.2 动态版；静态 Qt 5.15.2 未安装。
+- 本机仅 Win32 原生 动态版；静态 Win32 5.15.2 未安装。
 - `window.cpp` 为未参与构建的旧 Win32 实现，不作为迁移对象。
 
 ## 3. 证据采集器（A）
@@ -85,25 +85,25 @@ struct Capability {
 - `PersonService::write`：读取人物行与 r/s/face/功勋快照 → 单次 `compareExchangeTransaction` 写入全部条目；任一失败回滚。
 - `WarehouseService::writeRecord`：单条三字节比较交换；`writeConsumable`：单字节比较交换。
 - `BattleService::write`：读取 `expected` 行 → 覆盖字段 → 守卫交换；`BattleStateService::write`：回合/天气/季节/关卡字段快照后单事务写入。
-- `QtMainWindow::saveWarehouse`/`saveBattle` 的仓库、金钱、忠奸度、功勋池、战场状态合并为同页单事务（存在多地址时使用 `compareExchangeTransaction`）。
+- `Win32MainWindow::saveWarehouse`/`saveBattle` 的仓库、金钱、忠奸度、功勋池、战场状态合并为同页单事务（存在多地址时使用 `compareExchangeTransaction`）。
 
 ### B2 `include/game.hpp`
 按需增加批量方法声明（如 `VariableService::writeBools(const std::vector<std::pair<size_t,bool>>&)`），不改变现有公开行为。
 
 ## 5. UI 对齐（C）
 
-### C1 布尔页四项操作（`src/qt_mainwindow.cpp`）
+### C1 布尔页四项操作（`src/win32_mainwindow.cpp`）
 - `setupBooleanActions()` 为 `listview_var_1` 与 `var_save_1` 同时安装：
   `保存选中行`（`saveVariable(0)`）、`保存本页全部修改`（新增 `saveBooleanPage()`）、`全量导出…`、`全量导入并保存…`。
-- 新增 `void QtMainWindow::saveBooleanPage()`：读取表格当前全部行，收集与快照不同的布尔值，调用批量事务写入并刷新。
+- 新增 `void Win32MainWindow::saveBooleanPage()`：读取表格当前全部行，收集与快照不同的布尔值，调用批量事务写入并刷新。
 - `var_save_1` 设置 tooltip：`点击保存选中行；右键可保存本页全部修改、全量导出或全量导入。`
 - 导出/导入状态文案对齐 Python：
   - 导出：`已全量导出 %d 项布尔变量，共 %d 字节；页面未保存修改不包含在内`
   - 导入：`已全量导入 %d 项布尔变量，实际修改 %d 项`
 - 导入改为“读取快照 → 批量比较交换 → 回滚”，复用 `VariableService::writeBools`。
 
-### C2 能力门控（`src/qt_mainwindow.cpp`）
-- 新增 `void QtMainWindow::applyCapabilities()`，在附加成功与解绑时调用：
+### C2 能力门控（`src/win32_mainwindow.cpp`）
+- 新增 `void Win32MainWindow::applyCapabilities()`，在附加成功与解绑时调用：
   - `checkBox_1..9`：能力键不可读写时禁用并设置 `profile.capabilities[key].reason` 为 tooltip；可写时恢复。
   - 变量页 `var_save_1..3` 与列表按 `variables_bool/int/ptr` 可读/可写门控。
   - 天赋/必杀/仓库/人物页保存按钮按对应能力门控。
@@ -123,7 +123,7 @@ struct Capability {
 |---|---|
 | test_battle_tick_transactions.py / test_patch_runtime_memory.py | `covered:transaction_contracts` |
 | test_boolean_profile.py / test_variable_storage.py | `covered:variable_contracts` |
-| test_boolean_ui.py / test_ui.py / test_legacy_ui_compat.py / test_single_exe_ui.py / test_patch_lifecycle_ui.py | `covered:qt_ui_contracts` |
+| test_boolean_ui.py / test_ui.py / test_legacy_ui_compat.py / test_single_exe_ui.py / test_patch_lifecycle_ui.py | `covered:win32_ui_contracts` |
 | test_build_release.py | `not-applicable:python-build-script` |
 | test_capability_evidence.py / test_evidence_collector.py | `covered:evidence_contracts` |
 | test_compatibility.py / test_engine_profile.py / test_legacy_runtime_profiles.py / test_runtime_catalog.py / test_runtime_regions.py / test_single_exe_profile.py | `covered:profile_contracts` |
@@ -150,13 +150,13 @@ struct Capability {
 
 `tools/build_release.ps1`：
 
-1. 单文件是默认发布形态：静态 Qt 由 `tools/build_static_qt.ps1` 从本机 Qt 源码
+1. 单文件是默认发布形态：静态 Win32 由 `tools/（已移除的静态 Qt 构建脚本）` 从本机 Win32 源码
    编译（`-static -static-runtime`，x86），再用
-   `BANSHOU_SINGLE_EXE=ON` 构建，产物 `dist/扳手.exe`，模式 `single-exe-static`；
-   由 `tools/check_single_exe.ps1` 审计导入表，禁止 Qt/VC 运行库依赖。
-2. 无静态 Qt 且暂不编译时，退化为 Qt 5.14.2 动态版构建，生成 `dist/portable/`：
+   `BANSHOU_SINGLE_EXE=ON` 构建，产物 `dist/扳手.exe`，模式 `single-exe-native`；
+   由 `tools/check_single_exe.ps1` 审计导入表，禁止 Win32/VC 运行库依赖。
+2. 无静态 Win32 且暂不编译时，退化为 Win32 原生 动态版构建，生成 `dist/portable/`：
    - `扳手.exe`
-   - `Qt5Core.dll`、`Qt5Gui.dll`、`Qt5Widgets.dll`
+   - `Win32Core.dll`、`Win32Gui.dll`、`Win32Widgets.dll`
    - `platforms/qwindows.dll`、`styles/qwindowsvistastyle.dll`
    - `vc_redist.x86.exe` 或 `msvcp140.dll/vcruntime140.dll`（若系统缺失）
    - `README-便携版.txt`（说明模式、启动方式、依赖）
@@ -174,7 +174,7 @@ struct Capability {
 ## 8. 验证命令
 
 ```powershell
-cmake -S . -B C:\banshou-build\cmake4d -G "Visual Studio 17 2022" -A Win32 -DCMAKE_PREFIX_PATH=D:/Qt/5.14.2/msvc2017
+cmake -S . -B C:\banshou-build\cmake4d -G "Visual Studio 17 2022" -A Win32 -DCMAKE_PREFIX_PATH=D:/Win32/5.14.2/msvc2017
 cmake --build C:\banshou-build\cmake4d --config Release --parallel 2
 ctest --test-dir C:\banshou-build\cmake4d -C Release --output-on-failure
 python tools/apply_contract_status.py
@@ -189,8 +189,8 @@ powershell -ExecutionPolicy Bypass -File tools/verify_release.ps1
 ## 9. 非目标与风险
 
 - 不重写 Python 抽象类层次（`engine_layout.py`/`semantic_resolver.py`），只迁移其被 UI/画像使用的行为与不变量，理由见 D1。
-- ~~静态 Qt 未安装时不做源码编译 Qt~~（2026-11-16 修正：本机仅 Qt 5.14.2 动态版，
-  而单文件发布是硬需求，故改用源码编译静态 Qt；构建流程见 `tools/build_static_qt.ps1`，
+- ~~静态 Win32 未安装时不做源码编译 Win32~~（2026-11-16 修正：本机仅 Win32 原生 动态版，
+  而单文件发布是硬需求，故改用源码编译静态 Win32；构建流程见 `tools/（已移除的静态 Qt 构建脚本）`，
   耗时一次性，之后仍以 `BANSHOU_SINGLE_EXE=ON` 出包）。
 - 运行时断点采集需要真实 x86 进程；自动测试使用 `mock_target --breakpoint-spin`，真实游戏仅做人工验收记录。
 - 不修改 `老版游戏制作工具/扳手` 的 Python 源码。

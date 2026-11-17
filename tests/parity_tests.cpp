@@ -796,7 +796,7 @@ void testCoverage() {
   CHECK(tests.is_array() && tests.size() == 399);
   const std::set<std::string> suites = {
       "native_contracts",          "lifecycle",
-      "qt_ui_contracts",           "memory_contracts",
+      "win32_ui_contracts",           "memory_contracts",
       "profile_contracts",         "item_contracts",
       "variable_contracts",        "transaction_contracts",
       "evidence_contracts",        "cli_contracts",

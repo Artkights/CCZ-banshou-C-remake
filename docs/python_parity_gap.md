@@ -9,14 +9,14 @@
 
 | # | 问题 | 位置 | 修法 |
 |---|---|---|---|
-| 1 | 战场保存每次都无条件调用 `changeWeather`，x/y 变化还调用 6.6 未验证 ABI 的 `changePosition` | `qt_mainwindow.cpp` `saveBattle` | 删除两处调用；方向刷新改为独立条件；`RemoteServices::changePosition` 对 6.6 直接抛错 |
+| 1 | 战场保存每次都无条件调用 `changeWeather`，x/y 变化还调用 6.6 未验证 ABI 的 `changePosition` | `win32_mainwindow.cpp` `saveBattle` | 删除两处调用；方向刷新改为独立条件；`RemoteServices::changePosition` 对 6.6 直接抛错 |
 | 2 | 区域灭敌不过滤已消失单位、逐槽写入失败无法整体回滚 | `killBattleArea` | 加 `visibility >= 2` 过滤；新增 `BattleService::writeRows` 单事务提交 |
 | 3 | 武器槽允许写 70..149，可把防具/辅助写进武器位 | `savePerson` | 武器 `0..69`、防具 `70..108`、辅助 `109..end`，与 `mywindow.py` 一致 |
 | 4 | 能力重算后无后置校验，调用约定漂移会静默改坏人物 | `recalculatePerson` | 复刻 Python：比对 HP/MP 上限、基础五维、兵种、等级、功勋、经验，异常即报错 |
 | 5 | 附加只探测一次，加壳/延迟初始化基底首次附加易失败 | `session.cpp` `attach` | 500ms × 60 次退避重试，可被 detach 取消 |
 | 6 | `DIY.csv` 只查 exe 目录 | `initializeAttachedUi` | exe 目录 → 用户数据目录 → 当前目录，首次运行复制到用户目录 |
 | 7 | 仓库行显示 `ID:名称 等级=x 经验=y`，与 Python 的纯名称不一致，且缺「无效编号」分支 | `refreshWarehouse` | 改为 `ID：名称`，补 `无效编号：N` 与 `空` 三个分支 |
-| 8 | 控制页第 9 项标签是「省略攻击动作」，实际行为却是自动复活 | `ui/mainwindow.ui` | 改名为「我军自动复活」，与 Python 一致 |
+| 8 | 控制页第 9 项标签是「省略攻击动作」，实际行为却是自动复活 | `src/win32_control_table.inc` | 改名为「我军自动复活」，与 Python 一致 |
 
 顺带修正的文案/几何：仓库 `item_7` 标签写成「忠奸度」（应为功勋池）、战场
 `区域全灭`（应为区域灭敌）、五处控件互相遮挡、122 个控件未设字号导致 12pt/9pt 混排。
@@ -35,7 +35,7 @@
 | 跨页扫描（`runtime_regions.py`） | `RuntimeModuleImage` 统一提供模块镜像，不再逐页记录空洞 |
 | `.cczbool` 归档 | `VariableService` 的导入导出字节级一致 |
 | 证据采集六个子命令 | `evidence.cpp` + `--evidence-*`，6.5 样本产出 25 个 bundle |
-| 变量页四个右键动作 | `setupBooleanActions`，`qt_ui_contracts` 断言文案与 tooltip |
+| 变量页四个右键动作 | `setupBooleanActions`，`win32_ui_contracts` 断言文案与 tooltip |
 | 仓库批量按钮（全宝物/全道具/清空） | `WarehouseService::addAllTreasures/setAllConsumables/clearWarehouse` |
 
 ## 四、有意为之（详见 `deviations.md`）

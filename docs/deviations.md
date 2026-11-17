@@ -5,7 +5,7 @@
 
 ## D1 能力门控只做「全放开」
 
-`QtMainWindow::applyCapabilities()`（`src/qt_mainwindow.cpp`）目前只有 `enableAll()`：
+`Win32MainWindow::applyCapabilities()`（`src/win32_mainwindow.cpp`）目前只有 `enableAll()`：
 把 7 个控制复选框和 9 个保存类控件全部置为可用，不按 capability 状态禁用。
 
 原因：2026-11-16 的需求是「全面取消只读限制，所有内容均可读写」，此前按能力禁用
@@ -37,10 +37,10 @@ Python `mywindow.py` 的「全部」下拉用 `2*idx-1` 得到 1/3/5，但同一
 ## D5 窗口固定 700×530，控件绝对定位
 
 不使用 QLayout 自适应：`.ui` 里 300 多个控件都是绝对坐标，改成布局等于重写界面，
-且会打破 `qt_ui_contracts` 里 10 个精确矩形断言与 Python `tests/test_ui.py` 的基线。
+且会打破 `win32_ui_contracts` 里 10 个精确矩形断言与 Python `tests/test_ui.py` 的基线。
 高 DPI 由 `AA_EnableHighDpiScaling` 统一解决（见 `docs/ui_layout.md`）。
 
-## D6 `ui/mainwindow.ui` 不再与 `untitled.ui` 字节相同
+## D6 `src/win32_control_table.inc` 不再与 `untitled.ui` 字节相同
 
 早期版本的 `.ui` 是从未同步的 `untitled.ui` 直接复制的，因此两者 SHA256 相同。
 本轮修正了控制页第 9 项文案（`省略攻击动作` → `我军自动复活`）、仓库页

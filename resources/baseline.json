@@ -126,97 +126,97 @@
     {
       "source": "test_boolean_ui.py",
       "name": "test_bit_addresses_masks_and_editable_domain_edges",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_bit_display_explains_shared_byte_within_existing_width",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_rebased_process_displays_actual_address_and_saves_reference_snapshot",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_reserved_bits_are_read_only_and_save_rejects_programmatic_edits",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_page_crossing_user_boundary_keeps_reserved_values_read_only",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_non_aligned_browse_tail_stops_before_actor_table",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_out_of_range_jump_clears_rows_and_old_snapshots",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_forged_old_rows_cannot_modify_actor_dwords_even_in_direct_mode",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_unknown_native_format_cannot_be_saved_through_compatibility",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_old_unbounded_profile_does_not_expose_actor_rows",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_input_tokens_preserve_other_bits_and_neighboring_byte",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_single_row_save_keeps_other_unsaved_page_edits",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_page_save_merges_same_byte_and_cross_byte_edits",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_full_export_import_round_trip_uses_temp_archive",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_archive_count_or_crc_mismatch_rejects_without_touching_actor_data",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_boolean_save_rejects_expired_session_or_changed_layout",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_boolean_context_actions_are_reachable_from_table_and_save_button",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_game_changes_to_same_byte_are_rejected_without_overwriting_neighbor",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_boolean_ui.py",
       "name": "test_legacy_non_bitmap_boolean_keeps_plain_address",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_build_release.py",
@@ -916,142 +916,142 @@
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_legacy_fatal_preserves_all_opaque_people_when_value_changes",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_legacy_fatal_rejects_concurrent_game_changes",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_legacy_fatal_partial_write_restores_complete_record",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_fatal_save_rejects_changed_fixed_table_reference",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_effect_only_snapshot_commits_when_exclusive_is_unavailable",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_exclusive_only_snapshot_commits_without_effect_descriptor",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_exclusive_save_rejects_changed_fixed_table_reference",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_unknown_legacy_control_never_falls_back_to_fixed_address_writes",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_known_legacy_control_uses_the_session_patch_transaction",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_effect_save_rejects_layout_change_after_read",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_warehouse_level_edit_saves_without_replacing_the_item",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_stale_attach_result_does_not_replace_new_session_profile",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_scan_deadline_keeps_stable_profile_and_allows_initial_attach_retry",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_background_scan_does_not_block_qt_event_delivery",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_close_cancels_and_joins_an_active_scan",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_battle_hp_edit_preserves_opaque_and_normalized_buff_bytes",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_battle_rejects_concurrent_changes_anywhere_in_the_edited_unit",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_battle_partial_write_restores_the_entire_unit",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_battle_health_edits_preserve_unexposed_flag_bits",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_battle_save_rejects_changed_unit_count",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_battle_invalid_input_never_invokes_direction_helper",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_bulk_battle_edits_roll_back_all_affected_rows",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_inventory_multi_field_failure_restores_warehouse_and_money",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_bulk_inventory_failure_restores_all_consumables",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_clear_inventory_rejects_concurrent_opaque_byte_change",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_diy_compare_save_rejects_stale_data_and_session",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_diy_page_keeps_address_and_width_readonly_and_saves_value",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_legacy_ui_compat.py",
       "name": "test_missing_version_resource_still_queues_runtime_detection",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_main_cli.py",
@@ -1136,82 +1136,82 @@
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_owned_normal_patch_can_toggle_repeatedly_without_losing_capability",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_external_or_partial_patch_is_disabled_on_the_first_probe",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_two_transient_read_failures_preserve_owned_check_then_third_disables",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_third_unreadable_preprobe_rejects_uncheck_and_preserves_owned_value",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_same_identity_scan_preserves_profile_object_and_patch_recipe",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_owned_dynamic_stub_survives_recipe_less_scan_and_can_be_disabled",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_owned_dynamic_stub_byte_change_immediately_disables_control",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_ten_page_activations_reuse_ready_profile",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_unready_page_reprobes_data_without_rebuilding_owned_patch_profile",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_qt_activation_event_dispatches_to_real_ui_refresh_handler",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_qt_close_event_dispatches_to_session_cleanup",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_old_attachment_result_cannot_replace_profile_or_current_worker",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_old_scan_generation_and_process_identity_do_not_replace_current_worker",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_manual_revive_success_and_failure_restore_button",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_automatic_revive_failure_pauses_and_allows_user_to_reenable",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_lifecycle_ui.py",
       "name": "test_dynamic_ownership_snapshot_is_detached_from_the_lease_table",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_patch_runtime_memory.py",
@@ -1596,12 +1596,12 @@
     {
       "source": "test_single_exe_ui.py",
       "name": "test_expanded_names_and_endpoint_count_addresses",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_single_exe_ui.py",
       "name": "test_missing_fatal_labels_do_not_disable_resolved_assignments",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_startup_smoke.py",
@@ -1631,167 +1631,167 @@
     {
       "source": "test_ui.py",
       "name": "test_fixed_window_and_original_eight_pages",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_expanded_65_item_domains_are_visible_but_write_domains_stay_split",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_version_selector_geometry_labels_and_auto_mapping",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_effect_name_list_uses_current_profile_and_ui_boundary",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_original_page_actions_and_pivot_signal_surface_exist",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_attach_pipeline_opens_memory_before_runtime_profile_detection",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_effect_layout_switches_without_moving_lower_sections",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_ui_source_contains_the_extended_effect_controls",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_effect_assignment_66_ui_round_trip_and_empty_normalization",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_effect_assignment_66_v716_empty_character_round_trip",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_effect_assignment_66_mixed_empty_characters_round_trip",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_effect_assignment_66_partial_write_rolls_back_snapshot",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_hybrid_8_byte_effect_round_trip_preserves_opaque_empty_tokens",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_exclusive_round_trip_preserves_opaque_person_and_item_tokens",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_exclusive_explicit_empty_and_zero_use_canonical_old_semantics",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_exclusive_save_without_cache_uses_current_memory_as_base",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_power_transaction_rolls_back_both_when_exclusive_write_fails",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_direct_66_profile_enables_write_controls",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_all_factions_patch_uses_complete_66_instructions",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_66_auto_return_button_uses_native_three_site_patch",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_66_auto_return_partial_patch_is_not_claimed",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_66_boolean_variables_use_msb_first_bitset",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_66_consumable_range_and_single_byte_round_trip",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_66_consumable_empty_slot_label",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_66_bulk_consumable_transactions_touch_exactly_352_items",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_consumable_only_save_does_not_require_warehouse_selection",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_66_warehouse_preserves_opaque_high_item_when_saving_money",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_war_save_keeps_original_helper_call_surface",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_person_save_does_not_implicitly_recalculate",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_item_save_keeps_original_refresh_order",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_power_save_keeps_zero_value_member_clearing",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_fatal_save_refreshes_snapshot_without_remote_helper",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_ui.py",
       "name": "test_clear_item_keeps_warehouse_boundary_at_200_slots",
-      "nativeStatus": "covered:qt_ui_contracts"
+      "nativeStatus": "covered:win32_ui_contracts"
     },
     {
       "source": "test_variable_storage.py",

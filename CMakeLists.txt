@@ -10,14 +10,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE STRING
     "MSVC runtime; release publishing always uses the static CRT" FORCE)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_SOURCE_DIR}/ui")
-option(BANSHOU_QT_STATIC "Link Qt statically for the single-file release" OFF)
 option(BANSHOU_SINGLE_EXE "Enforce the self-contained release contract" OFF)
 if(BANSHOU_SINGLE_EXE)
-  set(BANSHOU_QT_STATIC ON CACHE BOOL "" FORCE)
   if(NOT CMAKE_MSVC_RUNTIME_LIBRARY MATCHES "^MultiThreaded")
     message(FATAL_ERROR "BANSHOU_SINGLE_EXE requires the static /MT MSVC runtime")
   endif()
@@ -45,33 +39,6 @@ if(NOT BANSHOU_CATALOG_SCHEMA STREQUAL "2" OR
     "catalog.json/baseline.json schema mismatch; run tools/export_baseline.py")
 endif()
 
-# 单文件发布优先使用 Qt 5.15.2；本机只提供 5.14.2 源码，可静态自行构建，
-# 因此允许通过 BANSHOU_QT_MIN_VERSION 指定最小可用版本（默认 5.14）。
-set(BANSHOU_QT_MIN_VERSION "5.14" CACHE STRING
-    "Minimum acceptable Qt version for this build")
-find_package(Qt5 ${BANSHOU_QT_MIN_VERSION} REQUIRED COMPONENTS Core Gui Widgets)
-set(BANSHOU_QT_PLATFORM_PLUGIN_TARGET "")
-set(BANSHOU_QT_OFFSCREEN_PLUGIN_TARGET "")
-if(BANSHOU_QT_STATIC)
-  foreach(_qt_target Qt5::Core Qt5::Gui Qt5::Widgets)
-    if(NOT TARGET ${_qt_target})
-      message(FATAL_ERROR "Static Qt target is missing: ${_qt_target}")
-    endif()
-    get_target_property(_qt_type ${_qt_target} TYPE)
-    if(NOT _qt_type STREQUAL "STATIC_LIBRARY")
-      message(FATAL_ERROR "BANSHOU_QT_STATIC requires static Qt libraries; ${_qt_target} is ${_qt_type}")
-    endif()
-  endforeach()
-  if(NOT TARGET Qt5::QWindowsIntegrationPlugin)
-    message(FATAL_ERROR "Static Qt Windows platform plugin is missing")
-  endif()
-  if(NOT TARGET Qt5::QOffscreenIntegrationPlugin)
-    message(FATAL_ERROR "Static Qt offscreen plugin is missing for UI contract tests")
-  endif()
-  set(BANSHOU_QT_PLATFORM_PLUGIN_TARGET Qt5::QWindowsIntegrationPlugin)
-  set(BANSHOU_QT_OFFSCREEN_PLUGIN_TARGET Qt5::QOffscreenIntegrationPlugin)
-  add_compile_definitions(QT_STATIC)
-endif()
 set(CAPSTONE_BUILD_STATIC ON CACHE BOOL "" FORCE)
 set(CAPSTONE_BUILD_SHARED OFF CACHE BOOL "" FORCE)
 set(CAPSTONE_BUILD_TESTS OFF CACHE BOOL "" FORCE)
@@ -86,11 +53,9 @@ add_library(banshou_core STATIC
 target_include_directories(banshou_core PUBLIC include third_party/json third_party/csv third_party/capstone/include)
 target_link_libraries(banshou_core PUBLIC capstone-static bcrypt version psapi shlwapi shell32 advapi32 dbghelp ole32)
 add_executable(banshou WIN32
-  src/main.cpp src/qt_mainwindow.cpp include/qt_mainwindow.hpp
-  ui/mainwindow.ui resources/qt_resources.qrc resources/app.rc)
-target_include_directories(banshou PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/banshou_autogen/include)
-target_link_libraries(banshou PRIVATE banshou_core Qt5::Core Qt5::Gui Qt5::Widgets
-  ${BANSHOU_QT_PLATFORM_PLUGIN_TARGET} comctl32)
+  src/main.cpp src/win32_mainwindow.cpp include/win32_mainwindow.hpp
+  src/win32_control_table.inc resources/app.rc)
+target_link_libraries(banshou PRIVATE banshou_core comctl32 comdlg32)
 target_link_options(banshou PRIVATE /SUBSYSTEM:WINDOWS,6.01 /MANIFEST:NO /DEBUG
   /LTCG /OPT:REF /OPT:ICF)
 if(BANSHOU_SINGLE_EXE)
@@ -116,25 +81,12 @@ add_executable(mock_target WIN32 tests/mock_target.cpp)
 target_link_libraries(mock_target PRIVATE banshou_core)
 target_link_options(mock_target PRIVATE /MANIFEST:NO)
 
-add_executable(qt_ui_tests tests/qt_ui_tests.cpp src/qt_mainwindow.cpp
-  include/qt_mainwindow.hpp ui/mainwindow.ui resources/qt_resources.qrc resources/app.rc)
-target_include_directories(qt_ui_tests PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/qt_ui_tests_autogen/include)
-target_link_libraries(qt_ui_tests PRIVATE banshou_core Qt5::Core Qt5::Gui Qt5::Widgets
-  ${BANSHOU_QT_OFFSCREEN_PLUGIN_TARGET})
-target_link_options(qt_ui_tests PRIVATE /MANIFEST:NO)
-target_compile_options(qt_ui_tests PRIVATE /UNDEBUG /wd4125)
-if(BANSHOU_QT_STATIC)
-  target_compile_definitions(qt_ui_tests PRIVATE BANSHOU_QT_STATIC_TESTS)
-endif()
-get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
-get_filename_component(QT_RUNTIME_DIRECTORY "${QT_QMAKE_EXECUTABLE}" DIRECTORY)
-get_filename_component(QT_PREFIX_DIRECTORY "${QT_RUNTIME_DIRECTORY}" DIRECTORY)
-# 用真实 windows 平台跑 UI 契约：offscreen 平台加载不到「微软雅黑」，会退化成
-# 更宽的替代字体，导致“文字装不下”的误判。测试不调用 show()，不会弹窗。
-add_test(NAME qt_ui_contracts COMMAND ${CMAKE_COMMAND} -E env
-  "PATH=${QT_RUNTIME_DIRECTORY};$ENV{PATH}"
-  "QT_QPA_PLATFORM_PLUGIN_PATH=${QT_PREFIX_DIRECTORY}/plugins/platforms"
-  $<TARGET_FILE:qt_ui_tests>)
+add_executable(win32_ui_tests tests/win32_ui_tests.cpp src/win32_mainwindow.cpp
+  src/win32_control_table.inc include/win32_mainwindow.hpp resources/app.rc)
+target_include_directories(win32_ui_tests PRIVATE src)
+target_link_libraries(win32_ui_tests PRIVATE banshou_core comctl32 comdlg32)
+target_link_options(win32_ui_tests PRIVATE /MANIFEST:NO)
+add_test(NAME win32_ui_contracts COMMAND $<TARGET_FILE:win32_ui_tests>)
 
 add_executable(parity_tests tests/parity_tests.cpp resources/app.rc)
 target_link_libraries(parity_tests PRIVATE banshou_core)
@@ -146,7 +98,4 @@ foreach(mode memory profile item variable transaction remote evidence cli
              coverage verify_release platform)
   add_test(NAME ${mode}_contracts COMMAND $<TARGET_FILE:parity_tests> ${mode})
 endforeach()
-add_test(NAME startup_contracts COMMAND ${CMAKE_COMMAND} -E env
-  "PATH=${QT_RUNTIME_DIRECTORY};$ENV{PATH}"
-  "QT_QPA_PLATFORM_PLUGIN_PATH=${QT_PREFIX_DIRECTORY}/plugins/platforms"
-  $<TARGET_FILE:parity_tests> startup)
+add_test(NAME startup_contracts COMMAND $<TARGET_FILE:parity_tests> startup)

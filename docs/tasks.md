@@ -32,9 +32,9 @@
 - [x] 验证：`transaction_contracts` 覆盖 stale 拒绝、第二条目失败回滚、未知字节保留。
 
 ## T6 UI 对齐
-- [x] `src/qt_mainwindow.cpp`：四项布尔右键动作、`saveBooleanPage`、tooltip、状态文案。
-- [x] `src/qt_mainwindow.cpp`：`applyCapabilities` 门控；删除控制补丁固定地址回退；6.6 无配方控制项禁用。
-- [x] 验证：`qt_ui_contracts` 断言两个控件各 4 个 action、文案与 tooltip；`cli_contracts` 验证只读会话拒绝写。
+- [x] `src/win32_mainwindow.cpp`：四项布尔右键动作、`saveBooleanPage`、tooltip、状态文案。
+- [x] `src/win32_mainwindow.cpp`：`applyCapabilities` 门控；删除控制补丁固定地址回退；6.6 无配方控制项禁用。
+- [x] 验证：`win32_ui_contracts` 断言两个控件各 4 个 action、文案与 tooltip；`cli_contracts` 验证只读会话拒绝写。
 
 ## T7 契约映射与覆盖测试
 - [x] `docs/native_contract_map.csv`：按规格 §6 生成全量映射。
@@ -45,10 +45,10 @@
 
 ## T8 UI 合同扩展
 - [x] `tests/qt_ui_tests.cpp`：布尔四项动作、动态控件几何、能力门控初始状态、八页动作。
-- [x] 验证：`qt_ui_contracts` 全绿。
+- [x] 验证：`win32_ui_contracts` 全绿。
 
 ## T9 发布脚本
-- [x] `tools/build_release.ps1`：静态 Qt 探测 / 便携动态打包 / `release.json` / zip。
+- [x] `tools/build_release.ps1`：静态 Win32 探测 / 便携动态打包 / `release.json` / zip。
 - [x] `tools/verify_release.ps1`：模式、SHA、启动自检、证据、文件清单。
 - [x] `README.md`、`ACCEPTANCE.md`：迁移结论与发布模式。
 - [x] 验证：脚本全绿，输出最终 EXE SHA256 与 zip 路径。
@@ -59,9 +59,9 @@
 - [x] 输出迁移完成结论：契约 399 条终态清单、CTest 结果、发布产物摘要。
 
 ## T11 单文件静态版（含运行库）
-- [x] `tools/build_static_qt.ps1`：MSVC v142 + x86 + `-static-runtime` 编译 Qt 5.14.2，
+- [x] `tools/（已移除的静态 Qt 构建脚本）`：MSVC v142 + x86 + `-static-runtime` 编译 Win32 原生，
       手工装配 INCLUDE/LIB/PATH（不依赖 `VsDevCmd` 的 `reg.exe`），`-VerifyOnly` 预检。
-- [x] `CMakeLists.txt`：单文件模式的 Qt 版本改为 `BANSHOU_QT_MIN_VERSION`（默认 5.14）。
+- [x] `CMakeLists.txt`：单文件模式的 Win32 版本改为 `BANSHOU_QT_MIN_VERSION`（默认 5.14）。
 - [x] `tools/build_release.ps1`：`Invoke-Native` 隔离原生命令 stderr；
       工具集探测改用 `[IO.Directory]` 并支持 `BANSHOU_MSVC_TOOLSET`。
 - [x] `tools/check_single_exe.ps1`：修复 dumpbin 分支逻辑与 `/imports` 正则，
