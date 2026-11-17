@@ -77,9 +77,9 @@ bundle 的 `bundleDigest`、`rawSampleDigest`、`manifest.json` 与 Python
 当前发布（2026-11-17，单文件原生版）：
 
 - 模式：`single-exe-native`
-- EXE：`dist\扳手.exe`，2,576,384 字节
-- SHA256：`1891329FAAFF824080467DBF5A3D91CBE682DE370AA58F1B6DB7A5339EDAC4F9`
-- 导入：BCRYPT / COMCTL32 / DBGHELP / GDI32 / KERNEL32 / OLE32 / SHELL32 / USER32 / VERSION
+- EXE：`dist\扳手.exe`，2,723,840 字节
+- SHA256：`CB4EF8E98B322EF34040C86C49920457628FD8DFF1520A31E757C45742087A9F`
+- 导入：BCRYPT / COMCTL32 / COMDLG32 / DBGHELP / GDI32 / KERNEL32 / OLE32 / SHELL32 / USER32 / VERSION
 
 ## 界面与功能覆盖
 
@@ -90,8 +90,10 @@ bundle 的 `bundleDigest`、`rawSampleDigest`、`manifest.json` 与 Python
 当前已接通的交互：窗口创建与 8 页切换、附加进程（`--attach-pid`）、控制页 9 项
 （补丁 / 托管 / 自动回归 / 自动复活标记）、仓库页刷新与单槽保存、启动烟测与诊断 JSON。
 
-其余页面的**后端服务与 399 条契约完整保留并全部通过测试**，但其 Win32 控件与
-服务之间的读写编排仍在补齐中；详见 `CHANGELOG.md` 与提交说明。
+其余五页的业务编排已按控件名逐项接入：人物（38 字段 + 装备分类 + 能力重算）、
+战场（44 字段 + 策略/目标/状态位 + 复活/灭敌/锁定/连接人物）、天赋（4+2/3+1 两套布局）、
+变量（3 组 100 行 + 布尔右键四动作 + CCZBOOL1 归档）、自定义（DIY.csv 三级路径 + 1000 行滚动）、
+必杀（5 人 + 等级 + 效果值）。两个 1 秒定时器负责锁定写回与自动复活。
 
 ## 验收边界
 

@@ -51,9 +51,9 @@ add_library(banshou_core STATIC
   src/game.cpp src/diy.cpp src/remote.cpp src/session.cpp src/evidence.cpp
   src/variables.cpp)
 target_include_directories(banshou_core PUBLIC include third_party/json third_party/csv third_party/capstone/include)
-target_link_libraries(banshou_core PUBLIC capstone-static bcrypt version psapi shlwapi shell32 advapi32 dbghelp ole32)
+target_link_libraries(banshou_core PUBLIC capstone-static bcrypt version shell32 dbghelp)
 add_executable(banshou WIN32
-  src/main.cpp src/win32_mainwindow.cpp include/win32_mainwindow.hpp
+  src/main.cpp src/win32_mainwindow.cpp src/win32_business.cpp include/win32_mainwindow.hpp include/win32_business.hpp
   src/win32_control_table.inc resources/app.rc)
 target_link_libraries(banshou PRIVATE banshou_core comctl32 comdlg32)
 target_link_options(banshou PRIVATE /SUBSYSTEM:WINDOWS,6.01 /MANIFEST:NO /DEBUG
@@ -81,8 +81,8 @@ add_executable(mock_target WIN32 tests/mock_target.cpp)
 target_link_libraries(mock_target PRIVATE banshou_core)
 target_link_options(mock_target PRIVATE /MANIFEST:NO)
 
-add_executable(win32_ui_tests tests/win32_ui_tests.cpp src/win32_mainwindow.cpp
-  src/win32_control_table.inc include/win32_mainwindow.hpp resources/app.rc)
+add_executable(win32_ui_tests tests/win32_ui_tests.cpp src/win32_mainwindow.cpp src/win32_business.cpp
+  src/win32_control_table.inc include/win32_mainwindow.hpp include/win32_business.hpp resources/app.rc)
 target_include_directories(win32_ui_tests PRIVATE src)
 target_link_libraries(win32_ui_tests PRIVATE banshou_core comctl32 comdlg32)
 target_link_options(win32_ui_tests PRIVATE /MANIFEST:NO)
