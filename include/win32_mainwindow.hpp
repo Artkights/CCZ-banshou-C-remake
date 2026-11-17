@@ -13,9 +13,8 @@
 #include <vector>
 namespace banshou {
 
-// Native Win32 replacement for QtMainWindow.  The control geometry, text and
-// font sizes come from src/win32_control_table.inc, generated from the former
-// ui/mainwindow.ui so the layout is reproduced exactly.
+// Native Win32 main window.  Control geometry, text and font sizes come from
+// src/win32_control_table.inc, a frozen snapshot of the original design.
 class Win32Business;
 
 class Win32MainWindow final {
