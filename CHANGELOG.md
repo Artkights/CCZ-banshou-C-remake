@@ -1,5 +1,22 @@
 # 更新记录
 
+## 2.0.1 — 2026-11-17
+
+修复 Win32 版「双击闪退」与「界面与旧版完全不同」：
+
+- 闪退：消息循环不再把任意窗口的 `WM_TIMER` 当成烟测定时器（加选项 + 窗口句柄 + 专用 id 三重门禁）；
+  写报告失败不再退出；`GetMessageW == -1` 单独处理；`create/runWindow` 加异常兜底并弹框说明。
+- 白块：`label` 误挂到主窗口并盖住整页。生成器改为把 `widget_0` 及其子控件归入隐藏页，
+  面板改为 `frame` 的子窗口。
+- 点不动：页面控件在 STATIC 面板里，`WM_COMMAND` 到不了主窗口。新增容器子类化转发
+  `WM_COMMAND/WM_NOTIFY/WM_CTLCOLOR*/WM_DRAWITEM/WM_PARENTNOTIFY`。
+- 空表：4 张 ListView 补列（3/3/3/6），`addList/listCount/listSelection/listData/clearControl`
+  按真实类名分流，新增 `addRow/tableCellText`；变量页与自定义页改为多列读写。
+- 观感：顶栏按工具栏高度整体下移、按钮文字度量 + 自绘；背景刷与 `WM_CTLCOLOR*`；
+  状态条黑底绿字、帮助红字黑体、标题居中；准星位图（`105 BITMAP`）与拖拽选窗；初始勾选态。
+- 修复 `toggleControl` 的 `c_str()` 悬垂、`business_` 析构顺序、`listview_lock` 误名（实为 `listview_war_2`）。
+- 新增 CTest `startup_alive`（无参数启动 3 秒存活）；`win32_ui_contracts` 增至 60+ 条断言。
+
 ## 2.0.0 — 2026-11-17
 
 界面框架从 Qt Widgets 换为 Win32 原生控件，仓库中不再包含 Qt 依赖。

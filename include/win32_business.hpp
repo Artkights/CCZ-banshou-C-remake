@@ -37,6 +37,8 @@ public:
   void refreshBattleStrategy();
 
   void refreshWarehouse();
+  void loadWarehouseRecord();
+  void loadConsumable();
   void saveWarehouse();
   void warehouseBulk(int action);
 

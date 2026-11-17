@@ -16,6 +16,7 @@ namespace banshou {
 // Native Win32 main window.  Control geometry, text and font sizes come from
 // src/win32_control_table.inc, a frozen snapshot of the original design.
 class Win32Business;
+struct WinControlDesc;
 
 class Win32MainWindow final {
 public:
@@ -24,9 +25,16 @@ public:
 
   bool create();
   HWND handle() const { return hwnd_; }
+  HWND frame() const { return frame_; }
   HWND control(const wchar_t *name) const;
+  HWND pagePanel(int page) const;
+  HWND toolButton(int index) const;
   int currentPage() const { return currentPage_; }
+  int toolbarHeight() const { return toolbarHeight_; }
   void showPage(int page);
+  void applyInitialState();
+
+  const std::wstring &startupError() const { return startupError_; }
 
   bool attachPid(uint32_t pid, bool readOnly = false);
   void toggleControl(int index);
@@ -53,6 +61,11 @@ public:
   uint64_t listData(const wchar_t *name, int row) const;
   void setListData(const wchar_t *name, int row, uint64_t data);
   int addList(const wchar_t *name, const std::wstring &text, uint64_t data);
+  int addRow(const wchar_t *name, const std::vector<std::wstring> &cells,
+             uint64_t data);
+  std::wstring tableCellText(const wchar_t *name, int row, int column) const;
+  int tableColumnCount(const wchar_t *name) const;
+  bool isListView(const wchar_t *name) const;
   void setEnabled(const wchar_t *name, bool enabled);
   void setVisible(const wchar_t *name, bool visible);
   void setRect(const wchar_t *name, int x, int y, int width, int height);
@@ -68,42 +81,67 @@ public:
   void onNotify(NMHDR *header);
   void onTimer(UINT_PTR timer);
   void onSessionState(uint64_t generation);
+  HBRUSH onCtlColor(UINT message, HDC dc, HWND child);
+  void paintTool(DRAWITEMSTRUCT *item);
 
   // JSON produced by --diagnostic-output.
   std::string diagnosticSnapshot() const;
 
 private:
   int idOf(const wchar_t *name) const;
+  bool createImpl();
   void wireBusiness();
+  void createFrame();
+  void createControls();
+  void createTools();
+  void beginWindowSelection();
+  void hoverWindowSelection();
+  void finishWindowSelection(bool attach);
   static LRESULT CALLBACK proc(HWND hwnd, UINT message, WPARAM wparam,
                                LPARAM lparam);
+  static LRESULT CALLBACK containerProc(HWND hwnd, UINT message, WPARAM wparam,
+                                        LPARAM lparam, UINT_PTR id,
+                                        DWORD_PTR ref);
 
   HINSTANCE instance_ = nullptr;
   HWND hwnd_ = nullptr;
+  HWND frame_ = nullptr;
   std::vector<HWND> controls_;
   std::unordered_map<std::wstring, HWND> byName_;
+  std::unordered_map<int, const struct WinControlDesc *> byId_;
   HWND toolButtons_[8] = {};
+  HFONT defaultFont_ = nullptr;
   std::vector<HFONT> fonts_;
   std::unordered_map<int, HFONT> fontBySize_;
-  HWND pages_[8] = {};
+  HWND pages_[9] = {};
   int currentPage_ = 0;
+  int toolbarHeight_ = 30;
   bool diagnostic_ = false;
   std::shared_ptr<MemorySession> memory_;
   EngineProfile profile_;
   uint64_t sessionGeneration_ = 0;
   bool suppressNotifications_ = false;
+  bool selecting_ = false;
+  HWND hoverWindow_ = nullptr;
+  HWND editCell_ = nullptr;
   std::wstring statusText_;
+  std::wstring startupError_;
   DiyCsv diy_;
   std::wstring diyPath_;
   size_t diySection_ = 0;
   size_t diyOffset_ = 0;
   std::vector<DiyExpandedRow> diyVisible_;
+  HBRUSH faceBrush_ = nullptr;
+  std::unordered_map<COLORREF, HBRUSH> brushes_;
+
+  // business_ must outlive the handlers that capture it.
+  std::unique_ptr<Win32Business> business_;
   std::function<void(int, HWND, WORD)> commandHandler_;
   std::function<void(NMHDR *)> notifyHandler_;
   std::function<void(UINT_PTR)> timerHandler_;
   std::function<void(HWND, POINT)> contextMenuHandler_;
-  std::unique_ptr<Win32Business> business_;
   friend class Win32Business;
+struct WinControlDesc;
 };
 
 int runWindow(int argc, wchar_t **argv);

@@ -34,11 +34,15 @@ C++ 版没有这套机制，改用「静态表布局 + 运行时段长假设 + �
 Python `mywindow.py` 的「全部」下拉用 `2*idx-1` 得到 1/3/5，但同一页的单项三态下拉
 用 1/3/6，两者自相矛盾（疑为 Python 侧笔误）。C++ 统一取 1/3/6。
 
-## D5 窗口固定 700×530，控件绝对定位
+## D5 窗口固定 700×530，控件绝对定位（Win32 版）
 
 不使用 QLayout 自适应：`.ui` 里 300 多个控件都是绝对坐标，改成布局等于重写界面，
 且会打破 `win32_ui_contracts` 里 10 个精确矩形断言与 Python `tests/test_ui.py` 的基线。
-高 DPI 由 `AA_EnableHighDpiScaling` 统一解决（见 `docs/ui_layout.md`）。
+Win32 版用同样的绝对坐标，但**层级按 Qt 复刻**：`frame` 在 `(9, 77+工具栏高)`，
+页面面板是它的子窗口；`centralwidget` 直属控件的 y 坐标统一加工具栏高度。
+
+高 DPI 采用 `dpiAware=false`（系统按 96dpi 虚拟化），保证 `GetClientRect` 恒为
+700×530、几何与设计稿一致；代价是高 DPI 下整窗位图缩放、文字略糊。
 
 ## D6 `src/win32_control_table.inc` 不再与 `untitled.ui` 字节相同
 

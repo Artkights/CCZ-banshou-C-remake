@@ -16,7 +16,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-UI = ROOT / "ui" / "mainwindow.ui"
+UI = ROOT / "design" / "mainwindow.ui"
 OUT = ROOT / "src" / "win32_control_table.inc"
 
 CONTAINER_CLASSES = {"QMainWindow", "QWidget", "QFrame", "QToolBar"}
@@ -95,6 +95,13 @@ def point_size(widget):
 
 
 def alignment(widget):
+    align = property_value(widget, "alignment")
+    if align is not None:
+        raw = " ".join(node.text or "" for node in align.iter())
+        if "AlignCenter" in raw:
+            return 2
+        if "AlignRight" in raw:
+            return 1
     prop = property_value(widget, "text")
     if prop is None:
         return 0
@@ -109,14 +116,6 @@ def alignment(widget):
     return 0
 
 
-def page_of(widget, parent_page, by_element):
-    name = widget.get("name", "")
-    match = re.fullmatch(r"widget_([1-8])", name)
-    if match:
-        return int(match.group(1)) - 1
-    return parent_page
-
-
 def c_string(value: str) -> str:
     escaped = value.replace("\\", "\\\\").replace('"', '\\"')
     return 'L"' + escaped + '"'
@@ -127,9 +126,10 @@ def main():
     def page_of(widget, parent_map):
         current = widget
         while current is not None:
-            match = re.fullmatch(r"widget_([1-8])", current.get("name", ""))
+            match = re.fullmatch(r"widget_([0-8])", current.get("name", ""))
             if match:
-                return int(match.group(1)) - 1
+                number = int(match.group(1))
+                return 8 if number == 0 else number - 1
             current = parent_map.get(current)
         return 255
 
@@ -207,13 +207,12 @@ def main():
         "static const size_t kWinControlCount = %d;" % len(records),
         "",
         "// Toolbar buttons mirror the 8 QActions in the .ui file.",
-        "struct WinToolDesc { int id; int page; int x, y, w, h; const wchar_t *text; };",
+        "struct WinToolDesc { int id; int page; const wchar_t *text; };",
         "static const WinToolDesc kWinTools[] = {",
     ]
     for index, action in enumerate(PAGE_ACTIONS):
-        lines.append("    {9000 + %d, %d, %d, %d, %d, %d, %s}," % (
-            index, index, 9 + 72 * index, 44, 70, 25,
-            c_string(PAGES[index] + "(" + action[-1] + ")")))
+        lines.append("    {9000 + %d, %d, %s}," % (
+            index, index, c_string(PAGES[index] + "(" + action[-1] + ")")))
     lines += [
         "};",
         "static const size_t kWinToolCount = 8;",

@@ -3,6 +3,7 @@
 1 RT_MANIFEST "app.manifest"
 101 ICON "logo.ico"
 102 CURSOR "target.cur"
+105 BITMAP "target.bmp"
 103 RCDATA "catalog.json"
 104 RCDATA "baseline.json"
 1 VERSIONINFO

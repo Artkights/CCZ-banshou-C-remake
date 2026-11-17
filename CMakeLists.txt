@@ -81,6 +81,12 @@ add_executable(mock_target WIN32 tests/mock_target.cpp)
 target_link_libraries(mock_target PRIVATE banshou_core)
 target_link_options(mock_target PRIVATE /MANIFEST:NO)
 
+add_executable(win32_startup_alive_tests tests/win32_startup_alive_tests.cpp)
+target_compile_definitions(win32_startup_alive_tests PRIVATE
+  BANSHOU_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+target_link_options(win32_startup_alive_tests PRIVATE /MANIFEST:NO)
+add_test(NAME startup_alive COMMAND $<TARGET_FILE:win32_startup_alive_tests>)
+
 add_executable(win32_ui_tests tests/win32_ui_tests.cpp src/win32_mainwindow.cpp src/win32_business.cpp
   src/win32_control_table.inc include/win32_mainwindow.hpp include/win32_business.hpp resources/app.rc)
 target_include_directories(win32_ui_tests PRIVATE src)

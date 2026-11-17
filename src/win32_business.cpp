@@ -1,4 +1,6 @@
 #include "win32_business.hpp"
+
+#include <commctrl.h>
 #include "diy.hpp"
 #include "image.hpp"
 #include "platform.hpp"
@@ -655,20 +657,20 @@ void Win32Business::addBattleLock() {
     throw Error("未选择战场单位");
   const auto record = BattleService(session, profile()).read(slot);
   const int row = window_.addList(
-      L"listview_lock",
+      L"listview_war_2",
       std::to_wstring(slot) + L"：" + std::to_wstring(record.dataId), slot);
   if (row >= 0)
-    window_.setListData(L"listview_lock", row, slot);
+    window_.setListData(L"listview_war_2", row, slot);
   SetTimer(window_.handle(), 3, 1000, nullptr);
   window_.setStatus(L"已增加锁定");
 }
 
 void Win32Business::removeBattleLock() {
-  const int row = window_.listSelection(L"listview_lock");
+  const int row = window_.listSelection(L"listview_war_2");
   if (row < 0)
     return;
-  SendMessageW(window_.control(L"listview_lock"), LB_DELETESTRING, WPARAM(row), 0);
-  if (window_.listCount(L"listview_lock") == 0)
+  SendMessageW(window_.control(L"listview_war_2"), LB_DELETESTRING, WPARAM(row), 0);
+  if (window_.listCount(L"listview_war_2") == 0)
     KillTimer(window_.handle(), 3);
   window_.setStatus(L"已移除锁定");
 }
@@ -678,9 +680,9 @@ void Win32Business::runBattleLocks() {
   if (!session)
     return;
   auto service = BattleService(session, profile());
-  const int count = window_.listCount(L"listview_lock");
+  const int count = window_.listCount(L"listview_war_2");
   for (int row = 0; row < count; ++row) {
-    const size_t slot = size_t(window_.listData(L"listview_lock", row));
+    const size_t slot = size_t(window_.listData(L"listview_war_2", row));
     if (slot >= kBattleCount)
       continue;
     auto record = service.read(slot);
@@ -739,6 +741,28 @@ void Win32Business::refreshWarehouse() {
   window_.setText(L"item_input_7", session->u(profile().address("merit_pool", 0x00505F40), 4));
 }
 
+void Win32Business::loadWarehouseRecord() {
+  auto session = this->session();
+  const int row = window_.listSelection(L"listview_item");
+  if (!session || row < 0)
+    return;
+  const size_t slot = size_t(window_.listData(L"listview_item", row));
+  const auto record = WarehouseService(session, profile()).readRecord(slot);
+  window_.selectComboData(L"item_input_1", record.item);
+  window_.setText(L"item_input_2", record.level);
+  window_.setText(L"item_input_3", record.experience);
+}
+
+void Win32Business::loadConsumable() {
+  auto session = this->session();
+  const int row = window_.listSelection(L"listview_item_2");
+  if (!session || row < 0)
+    return;
+  const size_t index = size_t(window_.listData(L"listview_item_2", row));
+  const auto value = WarehouseService(session, profile()).readConsumable(index);
+  window_.setText(L"item_input_4", value);
+}
+
 void Win32Business::saveWarehouse() {
   auto session = this->session();
   const int row = window_.listSelection(L"listview_item");
@@ -789,11 +813,20 @@ void Win32Business::warehouseBulk(int action) {
 void Win32Business::updateEffectLayout() {
   const bool extended = session() &&
                         profile().limit("effect_stride", 8) >= 16;
-  const wchar_t *extendedOnly[] = {L"power_input_1_5", L"power_input_1_6",
-                                   L"power_input_1_7", L"power_input_1_8",
-                                   L"power_input_1_10", L"power_input_1_12"};
+  const wchar_t *extendedOnly[] = {
+      L"power_input_1_5", L"power_input_1_6", L"power_input_1_7",
+      L"power_input_1_8", L"power_input_1_10", L"power_input_1_12",
+      L"power_label_1_4", L"power_label_1_5", L"power_label_1_6",
+      L"power_label_1_7", L"power_label_1_8", L"power_label_1_9"};
   for (const wchar_t *name : extendedOnly)
     window_.setVisible(name, extended);
+  if (extended) {
+    window_.setRect(L"power_1", 185, 15, 136, 20);
+    window_.setText(L"power_1", L"天赋·角色1 / 值");
+  } else {
+    window_.setRect(L"power_1", 185, 15, 31, 20);
+    window_.setText(L"power_1", L"天赋");
+  }
   if (extended) {
     window_.setRect(L"power_input_1_1", 185, 40, 96, 25);
     window_.setRect(L"power_input_1_2", 355, 40, 96, 25);
@@ -907,7 +940,6 @@ void Win32Business::refreshVariables() {
   const wchar_t *lists[] = {L"listview_var_1", L"listview_var_2",
                             L"listview_var_3"};
   const wchar_t *starts[] = {L"var_input_1", L"var_input_2", L"var_input_3"};
-  const wchar_t *values[] = {L"var_input_5", L"var_input_6", L"var_input_7"};
   for (int kind = 0; kind < 3; ++kind) {
     const auto kindValue = VariableKind(kind);
     const auto maximum = service.browseCount(kindValue);
@@ -916,8 +948,7 @@ void Win32Business::refreshVariables() {
     const auto cells = service.readPage(
         kindValue, start, std::min<size_t>(100, maximum - start));
     window_.clearControl(lists[kind]);
-    for (size_t row = 0; row < cells.size(); ++row) {
-      const auto &cell = cells[row];
+    for (const auto &cell : cells) {
       std::wstring value;
       if (kind == 0)
         value = cell.value ? L"True" : L"False";
@@ -925,21 +956,16 @@ void Win32Business::refreshVariables() {
         value = std::to_wstring(int32_t(cell.value));
       else
         value = std::to_wstring(cell.value);
-      window_.addList(lists[kind],
-                      std::to_wstring(cell.index) + L"  " + value + L"  " +
-                          hexAddress(cell.address),
-                      cell.index);
+      window_.addRow(lists[kind],
+                     {std::to_wstring(cell.index), value,
+                      hexAddress(cell.address)},
+                     cell.index);
     }
-    if (!cells.empty())
-      window_.setComboIndex(values[kind], 0);
-    if (cells.empty())
-      window_.setText(values[kind], L"");
-    else if (kind == 0)
-      window_.setText(values[kind], cells[0].value ? L"True" : L"False");
-    else if (kind == 1)
-      window_.setText(values[kind], int32_t(cells[0].value));
-    else
-      window_.setText(values[kind], cells[0].value);
+    if (!cells.empty()) {
+      const HWND list = window_.control(lists[kind]);
+      SendMessageW(list, LVM_SETITEMSTATE, 0,
+                   reinterpret_cast<LPARAM>(nullptr));
+    }
   }
 }
 
@@ -949,22 +975,33 @@ void Win32Business::saveVariable(int kind) {
     throw Error("尚未附加游戏");
   const wchar_t *lists[] = {L"listview_var_1", L"listview_var_2",
                             L"listview_var_3"};
-  const wchar_t *values[] = {L"var_input_5", L"var_input_6", L"var_input_7"};
   const int row = window_.listSelection(lists[kind]);
   if (row < 0)
     throw Error("未选择变量");
   const size_t index = size_t(window_.listData(lists[kind], row));
+  const std::wstring text = window_.tableCellText(lists[kind], row, 1);
   VariableService service(session, profile());
   if (kind == 0) {
-    const auto value = window_.text(values[kind]);
-    service.writeBool(index, value == L"True" || value == L"true" ||
-                                 value == L"T" || value == L"t" ||
-                                 value == L"1");
+    const std::wstring lowered = text;
+    service.writeBool(index, lowered == L"True" || lowered == L"true" ||
+                                 lowered == L"T" || lowered == L"t" ||
+                                 lowered == L"1");
   } else if (kind == 1) {
-    service.writeInt(index, window_.signedNumber(values[kind], "整数变量"));
+    int32_t value = 0;
+    try {
+      value = int32_t(std::stoll(text, nullptr, 10));
+    } catch (...) {
+      value = 0;
+    }
+    service.writeInt(index, value);
   } else {
-    service.writePointer(
-        index, uint32_t(window_.number(values[kind], UINT32_MAX, "指针变量")));
+    uint32_t value = 0;
+    try {
+      value = uint32_t(std::stoull(text, nullptr, 10));
+    } catch (...) {
+      value = 0;
+    }
+    service.writePointer(index, value);
   }
   refreshVariables();
   window_.setStatus(L"变量已保存");
@@ -975,31 +1012,20 @@ void Win32Business::saveBooleanPage() {
   if (!session)
     throw Error("尚未附加游戏");
   VariableService service(session, profile());
-  const auto maximum = service.browseCount(VariableKind::Boolean);
   const HWND list = window_.control(L"listview_var_1");
-  const int count = int(SendMessageW(list, LB_GETCOUNT, 0, 0));
-  const HWND edit = window_.control(L"var_input_5");
-  const int rows = int(SendMessageW(list, LB_GETSELCOUNT, 0, 0));
-  std::vector<int> selected(size_t(std::max(rows, 0)));
-  if (rows > 0)
-    SendMessageW(list, LB_GETSELITEMS, WPARAM(rows),
-                 reinterpret_cast<LPARAM>(selected.data()));
-  const std::wstring text = window_.text(L"var_input_5");
-  (void)edit;
-  const bool value = text == L"True" || text == L"true" || text == L"1";
+  const int count = int(SendMessageW(list, LVM_GETITEMCOUNT, 0, 0));
   std::vector<std::pair<size_t, bool>> changes;
-  if (selected.empty()) {
-    const int row = int(SendMessageW(list, LB_GETCURSEL, 0, 0));
-    if (row >= 0)
-      changes.emplace_back(size_t(window_.listData(L"listview_var_1", row)), value);
-  } else {
-    for (int row : selected)
-      changes.emplace_back(size_t(window_.listData(L"listview_var_1", row)), value);
+  for (int row = 0; row < count; ++row) {
+    const std::wstring value = window_.tableCellText(L"listview_var_1", row, 1);
+    const bool on = value == L"True" || value == L"true" || value == L"1";
+    const size_t index = size_t(window_.listData(L"listview_var_1", row));
+    if (service.readBool(index) != on)
+      changes.emplace_back(index, on);
   }
   service.writeBools(changes);
   refreshVariables();
-  window_.setStatus(L"已保存 " + std::to_wstring(changes.size()) + L" 项布尔变量");
-  (void)maximum;
+  window_.setStatus(L"已保存 " + std::to_wstring(changes.size()) +
+                    L" 项布尔变量");
 }
 
 void Win32Business::exportBooleanArchive() {
@@ -1222,11 +1248,11 @@ void Win32Business::refreshDiy() {
     } catch (const std::exception &error) {
       explanation = L"不可读：" + fromUtf8(error.what());
     }
-    const auto text = fromUtf8(item.label) + L"  " + std::to_wstring(value) +
-                      L"  " + explanation + L"  " + hexAddress(item.address) +
-                      L"  " + std::to_wstring(item.width) + L"  " +
-                      fromUtf8(item.explanation);
-    window_.addList(L"listview_diy", text, item.address);
+    window_.addRow(L"listview_diy",
+                   {fromUtf8(item.label), std::to_wstring(value), explanation,
+                    hexAddress(item.address), std::to_wstring(item.width),
+                    fromUtf8(item.explanation)},
+                   item.address);
   }
 }
 
@@ -1239,10 +1265,14 @@ void Win32Business::saveDiyValue() {
   if (size_t(row) >= items.size())
     throw Error("自定义行号越界");
   const auto &item = items[size_t(row)];
-  const auto value =
-      uint32_t(window_.number(L"diy_input_2", UINT32_MAX, "自定义值"));
+  uint32_t value = 0;
+  try {
+    value = uint32_t(std::stoull(
+        window_.tableCellText(L"listview_diy", row, 1), nullptr, 10));
+  } catch (...) {
+    value = 0;
+  }
   session->writeU(item.address, value, item.width, false);
-  window_.setText(L"diy_input_2", value);
   window_.setStatus(L"自定义变量已写入");
   refreshDiy();
 }
